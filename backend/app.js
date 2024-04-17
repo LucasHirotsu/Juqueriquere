@@ -17,11 +17,9 @@ const connection = mysql.createPool({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
-    database: 'parque' // Adicionando o nome do novo banco de dados
+    password: 'aluno',
+    database: 'parque'
 });
-
-// MÉTODOS PARA A TABELA TRILHAS
 
 const getAllTrilhas = async () => {
     const [query] = await connection.execute('SELECT * FROM trilhas');
@@ -60,4 +58,4 @@ app.delete('/trilhas/:id', async (req, res) => {
     const [query] = await connection.execute('DELETE FROM trilhas WHERE idTrilhas = ?', [id]);
     if (query.affectedRows === 0) return res.status(404).json({ mensagem: 'Trilha não encontrada.' });
     return res.status(200).json({ mensagem: 'Trilha excluída com sucesso.' });
-});
+})
