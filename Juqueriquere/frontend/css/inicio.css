@@ -17,3 +17,11 @@
     text-align: center;
     font-weight: bold;
 }
+
+/* Desktop */
+@media (990px <= width){
+    .destaques{
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}

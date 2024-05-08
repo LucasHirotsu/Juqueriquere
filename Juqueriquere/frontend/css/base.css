@@ -51,6 +51,9 @@ body{
     position: fixed;
     bottom: 0;
 }
+.nav-container{
+    width: 500px;
+}
 .nav-item{
     width: 20%;
     text-decoration: none;
@@ -122,9 +125,9 @@ a{
 
 footer{
     margin-top: 50px;
-    padding-top: 20px;
+    padding: 50px;
+    padding-bottom: 150px;
     background-color: var(--cinza);
-    height: 35vh;
 }
 #caraguatatuba{
     width: 100%;
@@ -137,4 +140,32 @@ footer .links{
 }
 .links img{
     width: 100%;
+}
+
+/* Desktop */
+
+@media (990px <= width){
+    .container{
+        width: 60%;
+    }
+
+    .nav{
+        top: 0;
+    }
+
+    .banner .logo, #caraguatatuba, footer .links{
+        width: 30%;
+        margin: 0;
+    }
+    #caraguatatuba{
+        padding: 0; border: 0;
+        padding-right: 20px;
+        border-right: 2px dashed #FFF;
+    }
+    footer .center{
+        flex-direction: row;
+    }
+    footer{
+        padding: 50px;
+    }
 }
