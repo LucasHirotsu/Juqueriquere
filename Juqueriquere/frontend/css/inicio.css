@@ -18,6 +18,11 @@
     font-weight: bold;
 }
 
+.destaques:hover > :not(:hover){
+    opacity: 0.4;
+    transition: all .6s ease;
+}
+
 /* Desktop */
 @media (990px <= width){
     .destaques{

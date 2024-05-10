@@ -50,6 +50,7 @@ body{
     backdrop-filter: blur(20px);
     position: fixed;
     bottom: 0;
+    z-index: 1;
 }
 .nav-container{
     width: 500px;
@@ -73,14 +74,11 @@ body{
     width: 45%;
 }
 
-.banner{
+.banner {
     height: 50vh;
     margin-bottom: 30px;
+    background: url(../img/inicio-bg.webp) center/250% no-repeat;
     justify-content: end;
-    background: url(../img/inicio-bg.webp);
-    background-position: center;
-    background-size: 250%;
-    background-repeat: no-repeat;
 }
 
 .banner .logo{

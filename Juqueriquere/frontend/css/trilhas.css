@@ -1,0 +1,29 @@
+.card-trilha{
+    background-color: var(--cor1);
+    border-radius: 10px;
+}
+
+h4{
+    font-size: 25px;
+    color: var(--bg);
+}
+
+.card-trilha p{
+    color: #000;
+    font-size: 18px;
+    text-align: left;
+}
+.card-trilha img{
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.card-container{
+    padding: 20px;
+    padding-top: 10px;
+}
+.card-trilha span{
+    font-weight: bold;
+    color: var(--bg);
+}
