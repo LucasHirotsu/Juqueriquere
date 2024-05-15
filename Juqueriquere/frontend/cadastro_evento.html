@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Evento - Parque Juqueriquerê</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 50px 0 0; /* Adiciona espaço extra no topo */
+      background: url(https://www.caraguatatuba.sp.gov.br/pmc/wp-content/uploads/2023/02/2-8-scaled.jpg) no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px; /* Adiciona preenchimento interno */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px; /* Aumenta a largura do quadro */
+      width: 100%;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label, input, textarea {
+      display: block;
+      width: calc(100% - 20px); /* Define a largura dos elementos */
+      margin-bottom: 10px;
+      margin-left: 10px; /* Adiciona margem interna esquerda */
+      margin-right: 10px; /* Adiciona margem interna direita */
+    }
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    textarea {
+      resize: none; /* Impede o dimensionamento */
+    }
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .button {
+      background-color: #007bff; /* Cor azul */
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none; /* Remove o sublinhado */
+      display: block;
+      margin: 10px auto; /* Centraliza horizontalmente */
+      text-align: center; /* Alinha o texto ao centro */
+      width: fit-content; /* Ajusta a largura ao conteúdo */
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .success-message {
+      position: absolute;
+      top: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0eb936;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: none;
+    }
+    .success-message.show {
+      display: block;
+    }
+    /* Estilo para o botão "Voltar" */
+    .button-voltar {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #007bff; /* Cor azul */
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 2;
+      text-decoration: none; /* Remove o sublinhado */
+    }
+    /* Estilo para o segundo formulário */
+    #segundo-formulario {
+      display: none;
+    }
+    /* Estilo para mensagem de erro */
+    .error-message {
+      color: rgb(0, 0, 0);
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <a href="eventos.html" class="button button-voltar"><i class="fas fa-arrow-left"></i> Voltar</a>
+  <div class="container">
+    <div class="form-container">
+      <h1>Cadastro de Evento</h1>
+      <form id="evento-form">
+        <label for="nome">Nome do Evento:</label>
+        <input type="text" id="nome" name="nome" required>
+        <label for="descricao">Descrição do Evento:</label>
+        <textarea id="descricao" name="descricao" rows="4" resize="none" required></textarea>
+        <label for="dataInicio">Data de Início do Evento:</label>
+        <input type="date" id="dataInicio" name="dataInicio" required>
+        <label for="dataTermino">Data de Término do Evento:</label>
+        <input type="date" id="dataTermino" name="dataTermino" required>
+        <label for="dataCriacao">Data de Criação do Evento:</label>
+        <input type="date" id="dataCriacao" name="dataCriacao" required>
+        <label for="local">Local do Evento:</label>
+        <input type="text" id="local" name="local" required>
+        <label for="website">Website do Evento (caso tenha):</label>
+        <input type="text" id="website" name="website">
+        <button id="anexar-imagem" class="button" type="button">Anexar Imagem</button>
+        <img id="preview-image" style="display: none; width: 100%; max-width: 200px; margin: 10px auto;" alt="Preview da Imagem Anexada">
+        <button id="continuar-button" class="button" type="button"><i class="fas fa-arrow-right"></i> Continuar</button>
+        <p class="error-message" id="error-message">Por favor, preencha todos os campos.</p>
+      </form>
+      <!-- Segundo formulário -->
+      <form id="segundo-formulario">
+        <label for="nomeExpositor">Nome do Expositor resposável:</label>
+        <input type="text" id="nomeExpositor" name="nomeExpositor" required>
+        <label for="emailInstituicao">Email da Instituição:</label>
+        <input type="email" id="emailInstituicao" name="emailInstituicao" required>
+        <label for="nomeInstituicao">Nome da Instituição:</label>
+        <input type="text" id="nomeInstituicao" name="nomeInstituicao" required>
+        <label for="websiteInstituicao">Website da Instituição (caso tenha):</label>
+        <input type="text" id="websiteInstituicao" name="websiteInstituicao">
+        <label for="telefoneInstituicao">Telefone da Instituição:</label>
+        <input type="tel" id="telefoneInstituicao" name="telefoneInstituicao" required>
+        <label for="descricaoExtra">Descrição Extra:</label>
+        <textarea id="descricaoExtra" name="descricaoExtra" rows="4" resize="none"></textarea>
+        <button id="submit-button" class="button" type="button">Cadastrar</button>
+      </form>
+      <div class="success-message" id="success-message">Evento cadastrado com sucesso!</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('evento-form');
+      var successMessage = document.getElementById('success-message');
+      var continuarButton = document.getElementById('continuar-button');
+      var anexarImagemButton = document.getElementById('anexar-imagem');
+      var segundoFormulario = document.getElementById('segundo-formulario');
+      var errorMessage = document.getElementById('error-message');
+      var submitButton = document.getElementById('submit-button');
+
+      continuarButton.addEventListener('click', function() {
+        // Verificar se todos os campos do primeiro formulário estão preenchidos
+        var inputs = form.querySelectorAll('input, textarea');
+        var isValid = true;
+        inputs.forEach(function(input) {
+          if (!input.value.trim()) {
+            isValid = false;
+          }
+        });
+
+        // Se algum campo estiver vazio, mostrar mensagem de erro e impedir a transição para o segundo formulário
+        if (!isValid) {
+          errorMessage.style.display = 'block';
+        } else {
+          // Esconder mensagem de erro caso esteja sendo exibida
+          errorMessage.style.display = 'none';
+
+          // Esconder o primeiro formulário
+          form.style.display = 'none';
+
+          // Mostrar o segundo formulário
+          segundoFormulario.style.display = 'block';
+        }
+      });
+
+      submitButton.addEventListener('click', function() {
+        // Verificar se todos os campos do segundo formulário estão preenchidos
+        var inputs = segundoFormulario.querySelectorAll('input, textarea');
+        var isValid = true;
+        inputs.forEach(function(input) {
+          if (!input.value.trim()) {
+            isValid = false;
+          }
+        });
+
+        // Se algum campo estiver vazio, mostrar mensagem de erro e impedir o envio
+        if (!isValid) {
+          errorMessage.style.display = 'block';
+        } else {
+          // Esconder mensagem de erro caso esteja sendo exibida
+          errorMessage.style.display = 'none';
+
+          // Aqui você pode enviar os dados para o servidor ou fazer qualquer outra operação desejada
+          // Neste exemplo, apenas exibimos a mensagem de sucesso
+          successMessage.classList.add('show');
+
+          // Limpar o formulário após o envio (opcional)
+          segundoFormulario.reset();
+
+          // Rolar suavemente para o topo da página
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      anexarImagemButton.addEventListener('click', function() {
+        // Simular clique no input de arquivo
+        var inputFile = document.createElement('input');
+        inputFile.type = 'file';
+        inputFile.accept = 'image/*';
+        inputFile.style.display = 'none';
+        document.body.appendChild(inputFile);
+
+        inputFile.addEventListener('change', function() {
+          var file = inputFile.files[0];
+          if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              var previewImage = document.getElementById('preview-image');
+              previewImage.src = e.target.result;
+              previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+          }
+          document.body.removeChild(inputFile);
+
+          // Rolar suavemente para o topo da página
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        inputFile.click();
+      });
+    });
+  </script>
+</body>
+</html>

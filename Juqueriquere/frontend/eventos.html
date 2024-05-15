@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos - Parque Juqueriquerê</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/trilhas.css">
+  <!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: rgba(5, 83, 5, 0.7);
+      padding: 10px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      color: #fff;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      position: relative; /* Adiciona posição relativa para que os botões possam ser posicionados absolutamente dentro dele */
+    }
+    .button {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #007bff; /* Cor azul */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 2;
+      text-decoration: none; /* Remove o sublinhado */
+    }
+    .button i {
+      margin-right: 5px;
+    }
+    .button:hover {
+      background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+    }
+    .add-event-button {
+      position: absolute;
+      top: 10px;
+      right: 10px; /* Ajusta o botão para o canto superior direito */
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 2;
+      text-decoration: none; /* Remove o sublinhado */
+    }
+    .add-event-button:hover {
+      background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+    }
+    .evento {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .evento img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .evento h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .evento p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .evento-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .evento-date {
+      font-size: 14px;
+      color: #999;
+    }
+    .evento-location {
+      font-size: 14px;
+      color: #999;
+    }
+    .evento-link {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .evento-link:hover {
+      background-color: #0056b3;
+    }
+  </style> -->
+</head>
+
+<body>
+
+  <div class="nav center horizontal">
+    <div class="nav-container horizontal center">
+      <a href="explorar.html" class="nav-item">
+        <div class="center"><img src="img/explorar.png" alt="Explorar">
+          <p>Explorar</p>
+        </div>
+      </a>
+      <a href="index.html" class="nav-item home">
+        <div class="center"><img src="img/logo.png" alt="Início">
+          <p>Início</p>
+        </div>
+      </a>
+      <a href="sobre.html" class="nav-item">
+        <div class="center"><img src="img/info.png" alt="Informações">
+          <p>Contato</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <section class="banner center">
+    <div class="gradiente center">
+      <img src="img/Site Parque.svg" alt="logo" class="logo">
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="conteudo center">
+      <h1>Eventos</h1>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae eum nostrum molestias praesentium! Dicta sed, unde cupiditate ea beatae amet!
+        <br>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, eum.
+      </p>
+      <a href="cadastro_evento.html" class="botao">Cadastrar Evento</a>
+
+      <h1>Todos os eventos:</h1>
+
+      <div class="card-trilha">
+        <img src="https://veja.abril.com.br/wp-content/uploads/2022/09/Justin-Bieber.jpg?quality=90&strip=info&w=720&h=440&crop=1" alt="Evento 1">
+        <div class="card-container">
+          <h4 class="evento-title">Evento 1</h4>
+          <p class="evento-description">Show desse cara ai que implorou pra participar.</p>
+          <p class="evento-date">Data: 12 de Agosto, 2024</p>
+          <p class="evento-location">Local: Parque Juqueriquerê</p>
+          <a href="#" class="botao2" onclick="alert('Não conseguimos falar não pro mendigo')">Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card-trilha">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Laura_Schadeck_no_Sad_Clud_Fest_em_2022.jpg" alt="Evento 2">
+        <div class="card-container">
+          <h4 class="evento-title">Evento 2</h4>
+          <p class="evento-description">Show ao vivo Laura Schadeck!!!!!.</p>
+          <p class="evento-date">Data: 09 de Agosto, 2024</p>
+          <p class="evento-location">Local: Parque Juqueriquerê</p>
+          <a href="#" class="botao2" onclick="alert('🤘🤘🖤🖤🖤🤘🤘🤘')">Detalhes</a>
+        </div>
+      </div>
+    
+    </section>
+  </div>
+
+  <footer>
+    <div class="container center conteudo">
+        <img src="img/caraguatatuba.png" alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+
+        <div class="links horizontal">
+            <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+            <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+            <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+            <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>

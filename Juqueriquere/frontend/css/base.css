@@ -16,6 +16,7 @@
 
 body{
     background-color: var(--bg);
+    overflow-x: hidden;
 }
 
 .container{
@@ -106,6 +107,7 @@ h1, h2, h3{
 h1{
     margin-top: 30px;
     font-size: 35px;
+    text-align: center;
 }
 
 a{
@@ -119,6 +121,16 @@ a{
     background-color: var(--cor1);
     padding: 10px 20px;
     border-radius: 5px;
+    display: block;
+}
+.botao2{
+    text-decoration: none;
+    color: var(--cor1);
+    background-color: var(--bg);
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
 }
 
 footer{
