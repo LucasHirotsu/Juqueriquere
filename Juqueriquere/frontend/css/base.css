@@ -81,8 +81,10 @@ body{
     background: url(../img/inicio-bg.webp) center/250% no-repeat;
     justify-content: end;
 }
+#banner-ingressos{ background-image: url(https://www.caragua.tur.br/wp-content/uploads/2023/06/1.jpg);}
+#banner-404{ background-image: url(../img/404.jpg);}
 
-.banner .logo{
+.logo{
     width: 80%;
     padding-bottom: 10px;
     border-bottom: 2px dashed #FFF;
@@ -113,6 +115,44 @@ h1{
 a{
     color: var(--cor1);
     font-size: 20px;
+}
+
+.cards, .cards a{
+    width: 100%;
+}
+
+.card-trilha{
+    background-color: var(--cor1);
+    border-radius: 10px;
+    width: 100%;
+}
+
+h4{
+    font-size: 25px;
+    color: var(--bg);
+}
+
+.card-trilha p{
+    color: #000;
+    font-size: 18px;
+    text-align: left;
+}
+.card-trilha img{
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+.card-container{
+    padding: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.card-trilha span{
+    font-weight: bold;
+    color: var(--bg);
 }
 
 .botao{
