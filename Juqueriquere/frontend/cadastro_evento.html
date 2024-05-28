@@ -157,7 +157,25 @@
         var segundoFormulario = document.getElementById('segundo-formulario');
         var errorMessage = document.getElementById('error-message');
         var submitButton = document.getElementById('submit-button');
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('evento-form');
+        var successMessage = document.getElementById('success-message');
+        var continuarButton = document.getElementById('continuar-button');
+        var anexarImagemButton = document.getElementById('anexar-imagem');
+        var segundoFormulario = document.getElementById('segundo-formulario');
+        var errorMessage = document.getElementById('error-message');
+        var submitButton = document.getElementById('submit-button');
 
+        continuarButton.addEventListener('click', function () {
+          // Verificar se todos os campos do primeiro formulário estão preenchidos
+          var inputs = form.querySelectorAll('input, textarea');
+          var isValid = true;
+          inputs.forEach(function (input) {
+            if (!input.value.trim()) {
+              isValid = false;
+            }
+          });
         continuarButton.addEventListener('click', function () {
           // Verificar se todos os campos do primeiro formulário estão preenchidos
           var inputs = form.querySelectorAll('input, textarea');
@@ -174,7 +192,15 @@
           } else {
             // Esconder mensagem de erro caso esteja sendo exibida
             errorMessage.style.display = 'none';
+          // Se algum campo estiver vazio, mostrar mensagem de erro e impedir a transição para o segundo formulário
+          if (!isValid) {
+            errorMessage.style.display = 'block';
+          } else {
+            // Esconder mensagem de erro caso esteja sendo exibida
+            errorMessage.style.display = 'none';
 
+            // Esconder o primeiro formulário
+            form.style.display = 'none';
             // Esconder o primeiro formulário
             form.style.display = 'none';
 
@@ -192,7 +218,22 @@
               isValid = false;
             }
           });
+        submitButton.addEventListener('click', function () {
+          // Verificar se todos os campos do segundo formulário estão preenchidos
+          var inputs = segundoFormulario.querySelectorAll('input, textarea');
+          var isValid = true;
+          inputs.forEach(function (input) {
+            if (!input.value.trim()) {
+              isValid = false;
+            }
+          });
 
+          // Se algum campo estiver vazio, mostrar mensagem de erro e impedir o envio
+          if (!isValid) {
+            errorMessage.style.display = 'block';
+          } else {
+            // Esconder mensagem de erro caso esteja sendo exibida
+            errorMessage.style.display = 'none';
           // Se algum campo estiver vazio, mostrar mensagem de erro e impedir o envio
           if (!isValid) {
             errorMessage.style.display = 'block';
@@ -203,7 +244,12 @@
             // Aqui você pode enviar os dados para o servidor ou fazer qualquer outra operação desejada
             // Neste exemplo, apenas exibimos a mensagem de sucesso
             successMessage.classList.add('show');
+            // Aqui você pode enviar os dados para o servidor ou fazer qualquer outra operação desejada
+            // Neste exemplo, apenas exibimos a mensagem de sucesso
+            successMessage.classList.add('show');
 
+            // Limpar o formulário após o envio (opcional)
+            segundoFormulario.reset();
             // Limpar o formulário após o envio (opcional)
             segundoFormulario.reset();
 
@@ -211,7 +257,18 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
+            // Rolar suavemente para o topo da página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
 
+        anexarImagemButton.addEventListener('click', function () {
+          // Simular clique no input de arquivo
+          var inputFile = document.createElement('input');
+          inputFile.type = 'file';
+          inputFile.accept = 'image/*';
+          inputFile.style.display = 'none';
+          document.body.appendChild(inputFile);
         anexarImagemButton.addEventListener('click', function () {
           // Simular clique no input de arquivo
           var inputFile = document.createElement('input');
@@ -232,7 +289,22 @@
               reader.readAsDataURL(file);
             }
             document.body.removeChild(inputFile);
+          inputFile.addEventListener('change', function () {
+            var file = inputFile.files[0];
+            if (file) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                var previewImage = document.getElementById('preview-image');
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+              };
+              reader.readAsDataURL(file);
+            }
+            document.body.removeChild(inputFile);
 
+            // Rolar suavemente para o topo da página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
             // Rolar suavemente para o topo da página
             window.scrollTo({ top: 0, behavior: 'smooth' });
           });
