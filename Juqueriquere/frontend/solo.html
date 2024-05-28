@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passeio solo | Parque Natural Municipal do Juqueriquerê</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ingressos.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="nav center horizontal">
+        <div class="nav-container horizontal center">
+            <a href="explorar.html" class="nav-item">
+                <div class="center"><img src="img/explorar.png" alt="Explorar">
+                    <p>Explorar</p>
+                </div>
+            </a>
+            <a href="index.html" class="nav-item home">
+                <div class="center"><img src="img/logo.png" alt="Início">
+                    <p>Início</p>
+                </div>
+            </a>
+            <a href="sobre.html" class="nav-item">
+                <div class="center"><img src="img/info.png" alt="Informações">
+                    <p>Contato</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <section class="banner center" id="banner-ingressos">
+        <div class="gradiente center">
+            <img src="img/Site Parque.svg" alt="logo" class="logo">
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="conteudo center">
+            <h1>Passeio solo</h1>
+            <div class="horizontal content">
+                <div class="conteudo w50">
+                    <p>
+                        Frase de exemplo pra descrição- Explore a natureza em sua forma mais vibrante! Traga sua turma escolar para uma jornada emocionante de aprendizado e diversão em nosso parque de conservação. Reserve seus ingressos agora e desperte o espírito da aventura!
+                    </p>
+                    <p>alguma informação importante</p>
+                    <p>campo aberto para informações ou cuidados ao ir para o parque....</p>
+                    <p>Para mais informações, entre em contato com email@gmail.com</p>
+                </div>
+                <div class="w50"><img src="https://i.pinimg.com/736x/0f/24/7b/0f247b51e209b2812761ff50f17534fe.jpg"></div>
+            </div>
+
+            <form class="form-container">
+                <h4 class="center">Garanta já seu ingresso</h4>
+                <div class="horizontal" id="pagamento">
+                    <div class="w50 gap">
+                        <div>
+                            <label for="name">Nome do professor/ responsável pelos alunos:</label>
+                            <input type="text" id="name" name="name" required placeholder="Digite aqui">
+                        </div>
+                        <div>
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required placeholder="Digite aqui">
+                        </div>
+                        <div>
+                            <label for="quantity">Quantidade de Ingressos:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1">
+                        </div>
+                        <div class="horizontal">
+                            <button type="button" id="decrease">-</button>
+                            <button type="button" id="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="w50 gap">
+                        <div>
+                            <label for="value"><b>VALOR TOTAL R$ <span id="display-value">0</span>.00</b></label>
+                            <input type="text" id="name" name="name" required placeholder="Cupom/ Voucher:">
+                        </div>
+                        <button type="submit">Continuar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container center conteudo">
+            <img src="img/caraguatatuba.png"
+                alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+
+            <div class="links horizontal">
+                <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+                <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+                <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+                <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        const decreaseButton = document.getElementById('decrease');
+        const increaseButton = document.getElementById('increase');
+        const quantityInput = document.getElementById('quantity');
+        const displayValue = document.getElementById("display-value");
+        const valueInput = document.getElementById("value");
+
+
+
+        let value = 0;
+
+        increaseButton.addEventListener("click", () => {
+            const quantity = parseInt(quantityInput.value);
+            if (quantity > 0) {
+                value += 100;
+                displayValue.textContent = value;
+            }
+        });
+
+        decreaseButton.addEventListener("click", () => {
+            if (value > 0) {
+                value -= 100;
+                displayValue.textContent = value;
+            }
+        });
+
+        decreaseButton.addEventListener('click', function () {
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+
+        increaseButton.addEventListener('click', function () {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        });
+
+        const monthNames = ["JAN. DE", "FEV. DE", "MAR. DE", "ABR. DE", "MAI. DE", "JUN. DE",
+            "JUL. DE", "AGO. DE", "SET. DE", "OUT. DE", "NOV. DE", "DEZ. DE"];
+
+        const currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        function renderCalendar() {
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+            const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const daysContainer = document.getElementById("days");
+            daysContainer.innerHTML = "";
+
+            // Adicionar dias anteriores, se necessário, para preencher a primeira semana
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const dayElement = document.createElement("div");
+                dayElement.classList.add("day");
+                daysContainer.appendChild(dayElement);
+            }
+
+            // Adicionar os dias do mês
+            for (let i = 1; i <= lastDayOfMonth; i++) {
+                const dayElement = document.createElement("div");
+                dayElement.classList.add("day");
+                dayElement.textContent = i;
+                dayElement.addEventListener("click", () => {
+                    dayElement.classList.toggle("selected");
+                });
+                daysContainer.appendChild(dayElement);
+            }
+        }
+
+        function updateMonthText() {
+            const monthText = `${monthNames[currentMonth]} ${currentYear}`;
+            document.getElementById("current-month").textContent = monthText;
+        }
+
+        function goToPreviousMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+            updateMonthText();
+        }
+
+        function goToNextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+            updateMonthText();
+        }
+
+        function goToPreviousYear() {
+            currentYear--;
+            renderCalendar();
+            updateMonthText();
+        }
+
+        function goToNextYear() {
+            currentYear++;
+            renderCalendar();
+            updateMonthText();
+        }
+
+        document.getElementById("prev-month").addEventListener("click", goToPreviousMonth);
+        document.getElementById("next-month").addEventListener("click", goToNextMonth);
+        document.getElementById("prev-year").addEventListener("click", goToPreviousYear);
+        document.getElementById("next-year").addEventListener("click", goToNextYear);
+
+        renderCalendar();
+        updateMonthText();
+    </script>
+</body>
+
+</html>
