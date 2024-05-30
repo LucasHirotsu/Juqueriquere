@@ -274,7 +274,10 @@ footer .links{
     .trilhas{
         flex-direction: row;
     }
-
+    
+    .banner {
+        background-size: 100%;
+    }
     .banner .logo, #caraguatatuba, footer .links{
         width: 30%;
         margin: 0;
