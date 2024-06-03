@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Trilhas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Trilhas</h1>
+        <form id="trilhaForm">
+            <div class="form-group">
+                <label for="local">Local</label>
+                <input type="text" id="local" name="local" required>
+            </div>
+            <div class="form-group">
+                <label for="extensao">Extensão</label>
+                <input type="text" id="extensao" name="extensao" required>
+            </div>
+            <div class="form-group">
+                <label for="altitude">Altitude</label>
+                <input type="text" id="altitude" name="altitude" required>
+            </div>
+            <div class="form-group">
+                <label for="duracao">Duração</label>
+                <input type="text" id="duracao" name="duracao" required>
+            </div>
+            <div class="form-group">
+                <label for="dificuldade">Dificuldade</label>
+                <input type="text" id="dificuldade" name="dificuldade" required>
+            </div>
+            <div class="form-group">
+                <label for="monitoria">Monitoria</label>
+                <input type="text" id="monitoria" name="monitoria" required>
+            </div>
+            <div class="form-group">
+                <label for="caracteristicas">Características</label>
+                <textarea id="caracteristicas" name="caracteristicas" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="agendamento">Agendamento</label>
+                <input type="text" id="agendamento" name="agendamento" required>
+            </div>
+            <div class="form-group">
+                <label for="horario">Horário</label>
+                <input type="text" id="horario" name="horario" required>
+            </div>
+            <div class="form-group">
+                <label for="imagem">Imagem</label>
+                <input type="text" id="imagem" name="imagem" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Cadastrar Trilha</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('trilhaForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch('http://localhost:9000/trilhas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.mensagem);
+                    event.target.reset();
+                } else {
+                    const error = await response.json();
+                    alert(error.mensagem);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Ocorreu um erro ao cadastrar a trilha.');
+            }
+        });
+    </script>
+</body>
+</html>
