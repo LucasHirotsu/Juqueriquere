@@ -1,29 +1,36 @@
-.cards{
+.cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.conteudo img{
+.conteudo img {
     width: 100%;
     border-radius: 10px;
 }
 
-#pagamento, .content{
+#pagamento,
+.content {
     flex-direction: column;
 }
-#pagamento .w50, .content .w50{
+
+#pagamento .w50,
+.content .w50 {
     width: 100%;
 }
 
-@media (990px <= width){
-    .cards{
+@media (990px <=width) {
+    .cards {
         flex-direction: row;
     }
-    #pagamento, .content{
+
+    #pagamento,
+    .content {
         flex-direction: row;
     }
-    #pagamento .w50, .content .w50{
+
+    #pagamento .w50,
+    .content .w50 {
         width: 50%;
     }
 }
