@@ -1,0 +1,72 @@
+
+.body {
+    font-family: 'Baloo 2', cursive;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px; /* Reduzido para encaixar melhor no formulário de pagamento */
+}
+
+.logo-container img {
+    width: 45; /* Reduzido para encaixar melhor no formulário de pagamento */
+    height: 45; /* Reduzido para encaixar melhor no formulário de pagamento */
+    margin-right: 10px;
+    margin-top: 10px;
+ #   background-color: #008A66;
+   # border-radius: 10px;
+}
+
+.nav-link {
+    color: #333; /* Alterado para um tom mais escuro */
+}
+
+.nav-tabs .nav-item .active {
+    color: #008a66; /* Cor do link ativo */
+    border-color: #cbfff1; /* Cor da borda do link ativo */
+}
+
+.nav-tabs .nav-item .nav-link {
+    border-bottom: none; /* Removido a linha de sublinhado padrão */
+}
+
+.donation-field {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.donation-field label {
+    margin-right: 10px;
+}
+
+.preencha-campos {
+    padding: 10px;
+    margin-left: 2px;
+}
+
+.donation-value {
+    font-size: 20px;
+    background-color: #f0f0f0; /* Cor de fundo da caixa de valor */
+    width: 100px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: #cbfff1; /* Cor de fundo do botão primário */
+    color: #008a66; /* Cor do texto do botão primário */
+    border-color: #cbfff1; /* Cor da borda do botão primário */
+}
+
+.qr-code{
+    color: black;
+    font-weight: bold; 
+    font-size: 20px;
+}
+
