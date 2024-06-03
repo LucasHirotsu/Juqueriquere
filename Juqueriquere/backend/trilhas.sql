@@ -1,9 +1,10 @@
-create database parque;
+create database Juqueriquere;
 
-use parque;
+use Juqueriquere;
 
 CREATE TABLE trilhas(
   idTrilhas INT NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
   local MEDIUMTEXT NOT NULL,
   extensao VARCHAR (600) NOT NULL,
   altitude VARCHAR(45) NOT NULL,
