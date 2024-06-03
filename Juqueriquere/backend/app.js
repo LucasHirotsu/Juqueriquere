@@ -10,7 +10,7 @@ app.use(cors());
 const PORT = 9000;
 
 app.listen(PORT, () => {
-    console.log("Ok")
+    console.log("Ok");
 });
 
 const connection = mysql.createPool({
@@ -18,7 +18,7 @@ const connection = mysql.createPool({
     port: 3306,
     user: 'root',
     password: 'aluno',
-    database: 'parque'
+    database: 'Juqueriquere'
 });
 
 const getAllTrilhas = async () => {
@@ -39,16 +39,22 @@ app.get('/trilhas/:id', async (req, res) => {
 });
 
 app.post('/trilhas', async (req, res) => {
-    const { local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
-    const [query] = await connection.execute('INSERT INTO trilhas (local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem]);
+    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
+    const [query] = await connection.execute(
+        'INSERT INTO trilhas (nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem]
+    );
     if (query.length === 0) return res.status(400).json({ mensagem: 'Erro na adição da trilha.' });
     return res.status(200).json({ mensagem: 'Trilha inserida com sucesso.' });
 });
 
 app.put('/trilhas/:id', async (req, res) => {
     const { id } = req.params;
-    const { local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
-    const [query] = await connection.execute('UPDATE trilhas SET local = ?, extensao = ?, altitude = ?, duracao = ?, dificuldade = ?, monitoria = ?, caracteristicas = ?, descricao = ?, agendamento = ?, horario = ?, imagem = ? WHERE idTrilhas = ?', [local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, id]);
+    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
+    const [query] = await connection.execute(
+        'UPDATE trilhas SET nome = ?, local = ?, extensao = ?, altitude = ?, duracao = ?, dificuldade = ?, monitoria = ?, caracteristicas = ?, descricao = ?, agendamento = ?, horario = ?, imagem = ? WHERE idTrilhas = ?',
+        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, id]
+    );
     if (query.affectedRows === 0) return res.status(404).json({ mensagem: 'Trilha não encontrada.' });
     return res.status(200).json({ mensagem: 'Trilha alterada com sucesso.' });
 });
@@ -58,4 +64,4 @@ app.delete('/trilhas/:id', async (req, res) => {
     const [query] = await connection.execute('DELETE FROM trilhas WHERE idTrilhas = ?', [id]);
     if (query.affectedRows === 0) return res.status(404).json({ mensagem: 'Trilha não encontrada.' });
     return res.status(200).json({ mensagem: 'Trilha excluída com sucesso.' });
-})
+});
