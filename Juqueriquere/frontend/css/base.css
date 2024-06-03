@@ -300,14 +300,18 @@ footer .links {
     .cards-horizontal {
         flex-direction: row;
     }
-    .trilhas{
+
+    .trilhas {
         flex-direction: row;
     }
-    
+
     .banner {
         background-size: 100%;
     }
-    .banner .logo, #caraguatatuba, footer .links{
+
+    .banner .logo,
+    #caraguatatuba,
+    footer .links {
         width: 30%;
         margin: 0;
     }
