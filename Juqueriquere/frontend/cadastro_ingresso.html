@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt=BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin - Ingressos | Parque Natural Municipal do Juqueriquerê</title>
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/ingressos.css">
+        <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    </head>
+
+    <body>
+        <div class="nav center horizontal">
+            <div class="nav-container horizontal center">
+                <a href="explorar.html" class="nav-item">
+                    <div class="center"><img src="img/explorar.png" alt="Explorar">
+                        <p>Explorar</p>
+                    </div>
+                </a>
+                <a href="index.html" class="nav-item home">
+                    <div class="center"><img src="img/logo.png" alt="Início">
+                        <p>Início</p>
+                    </div>
+                </a>
+                <a href="sobre.html" class="nav-item">
+                    <div class="center"><img src="img/info.png" alt="Informações">
+                        <p>Contato</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <section class="banner center" id="banner-ingressos">
+            <div class="gradiente center">
+                <img src="img/Site Parque.svg" alt="logo" class="logo">
+            </div>
+        </section>
+        
+        <div class="container">
+            <section class="conteudo center">
+                <div id="ingexistentes">
+                    <ul id="listaIng">
+                    </ul>
+                </div>
+                <div>
+                    <h1>ingressos</h1>
+                    <p>
+                      Preencha o formulário para gerenciar os ingressos
+                    </p>
+                </div>
+                <form id="ticketForm" method="post">
+                    <h4 class="center">Gerenciar ingressos</h4>
+                    <div class="form-group">
+                        <label for="ticketName">Nome do Ingresso:</label>
+                        <input type="text" id="ticketName" name="ticketName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketDescription">Descrição:</label>
+                        <textarea id="ticketDescription" name="ticketDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketPrice">Preço:</label>
+                        <input type="number" id="ticketPrice" name="ticketPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ticketImage">Imagem:</label>
+                        <input type="file" id="ticketImage" name="ticketImage" accept="image/*" required>
+                    </div>
+                    <button id="canc" type="button" onclick="cancel()">Cancelar</button>
+                <div class="botoes horizontal">
+                    <button  class="w50" id="add" type="submit">Adicionar Ingresso</button>
+                    <button class="w50" id="rem" type="button" onclick="remIng()">Remover Ingresso</button>
+                </div>
+                </form>
+            </section>
+        </div>
+
+        <footer>
+            <div class="container center conteudo">
+              <img src="img/caraguatatuba.png"
+                alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+      
+              <div class="links horizontal">
+                <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+                <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+                <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+                <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+              </div>
+            </div>
+          </footer>
+      
+        <script src="scripts/script.js"></script>
+
+    </body>
+</html>
