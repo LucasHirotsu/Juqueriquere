@@ -2,19 +2,19 @@ create database Juqueriquere;
 
 use Juqueriquere;
 
-CREATE TABLE trilhas(
-  idTrilhas INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(45) NOT NULL,
-  local MEDIUMTEXT NOT NULL,
-  extensao VARCHAR (600) NOT NULL,
-  altitude VARCHAR(45) NOT NULL,
-  duracao VARCHAR(45) NOT NULL,
-  dificuldade VARCHAR(45) NOT NULL,
-  monitoria VARCHAR(45) NOT NULL,
-  caracteristicas MEDIUMTEXT NOT NULL,
-  descricao MEDIUMTEXT NOT NULL,
-  agendamento MEDIUMTEXT NOT NULL,
-  horario VARCHAR(45) NOT NULL,
-  imagem varchar(45) not null,
-  PRIMARY KEY (`idTrilhas`))
+CREATE TABLE trilhas (
+  idtrilhas INT NOT NULL AUTO_INCREMENT,
+  nome TEXT(150) NOT NULL,
+  local LONGTEXT NOT NULL,
+  extensao DECIMAL NOT NULL,
+  altitude DECIMAL NULL,
+  duracao INT NOT NULL,
+  dificuldade INT NOT NULL,
+  monitoria INT NOT NULL,
+  caracteristicas LONGTEXT NOT NULL,
+  descricao TEXT(255) NOT NULL,
+  agendamento TINYINT NOT NULL,
+  horario LONGTEXT NOT NULL,
+  imagem TEXT(255) NULL,
+  PRIMARY KEY (`idtrilhas`))
 ENGINE = InnoDB;
