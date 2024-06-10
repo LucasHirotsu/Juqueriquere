@@ -1,149 +1,90 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Trilhas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+        }
+        input, button {
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Trilhas</h1>
+    <form id="trilhaForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="text" id="local" placeholder="Local" required>
+        <input type="text" id="extensao" placeholder="Extensão" required>
+        <input type="text" id="altitude" placeholder="Altitude" required>
+        <input type="text" id="duracao" placeholder="Duração" required>
+        <input type="text" id="dificuldade" placeholder="Dificuldade" required>
+        <input type="text" id="monitoria" placeholder="Monitoria" required>
+        <input type="text" id="caracteristicas" placeholder="Características" required>
+        <input type="text" id="descricao" placeholder="Descrição" required>
+        <input type="text" id="agendamento" placeholder="Agendamento" required>
+        <input type="text" id="horario" placeholder="Horário" required>
+        <input type="text" id="imagem" placeholder="Imagem" required>
+        <button type="submit">Cadastrar Trilha</button>
+    </form>
+    <script>
+        document.getElementById('trilhaForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Início | Parque Natural Municipal do Juqueriquerê</title>
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/inicio.css">
-        <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-    </head>
+            const trilha = {
+                nome: document.getElementById('nome').value,
+                local: document.getElementById('local').value,
+                extensao: document.getElementById('extensao').value,
+                altitude: document.getElementById('altitude').value,
+                duracao: document.getElementById('duracao').value,
+                dificuldade: document.getElementById('dificuldade').value,
+                monitoria: document.getElementById('monitoria').value,
+                caracteristicas: document.getElementById('caracteristicas').value,
+                descricao: document.getElementById('descricao').value,
+                agendamento: document.getElementById('agendamento').value,
+                horario: document.getElementById('horario').value,
+                imagem: document.getElementById('imagem').value,
+            };
 
-    <body>
-        <div class="nav center horizontal">
-            <div class="nav-container horizontal center">
-                <a href="explorar.html" class="nav-item">
-                    <div class="center"><img src="img/explorar.png" alt="Explorar">
-                        <p>Explorar</p>
-                    </div>
-                </a>
-                <a href="index.html" class="nav-item home">
-                    <div class="center"><img src="img/logo.png" alt="Início">
-                        <p>Início</p>
-                    </div>
-                </a>
-                <a href="sobre.html" class="nav-item">
-                    <div class="center"><img src="img/info.png" alt="Informações">
-                        <p>Contato</p>
-                    </div>
-                </a>
-            </div>
-        </div>
+            try {
+                const response = await fetch('http://localhost:9000/trilhas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(trilha)
+                });
 
-        <section class="banner center">
-            <div class="gradiente center">
-                <img src="img/Site Parque.svg" alt="logo" class="logo">
-            </div>
-        </section>
-
-        <div class="container">
-            <section class="conteudo center">
-                <h1>Cadastro de Trilhas</h1>
-                <p>Preencha o formulário abaixo para Cadastrar uma Trilha</p>
-
-                <form id="trilhaForm">
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="local">Local</label>
-                        <input type="text" id="local" name="local" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="extensao">Extensão</label>
-                        <input type="text" id="extensao" name="extensao" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="altitude">Altitude</label>
-                        <input type="text" id="altitude" name="altitude" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duracao">Duração</label>
-                        <input type="text" id="duracao" name="duracao" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="dificuldade">Dificuldade</label>
-                        <input type="text" id="dificuldade" name="dificuldade" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="monitoria">Monitoria</label>
-                        <input type="text" id="monitoria" name="monitoria" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="caracteristicas">Características</label>
-                        <textarea id="caracteristicas" name="caracteristicas" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="descricao">Descrição</label>
-                        <textarea id="descricao" name="descricao" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="agendamento">Agendamento</label>
-                        <input type="text" id="agendamento" name="agendamento" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="horario">Horário</label>
-                        <input type="text" id="horario" name="horario" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="imagem">Imagem</label>
-                        <input type="text" id="imagem" name="imagem" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">Cadastrar Trilha</button>
-                    </div>
-                </form>
-            </section>
-        </div>
-
-        <footer>
-            <div class="container center conteudo">
-                <img src="img/caraguatatuba.png"
-                    alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
-
-                <div class="links horizontal">
-                    <a href=""><img src="img/instagram.png" alt="Instagram"></a>
-                    <a href=""><img src="img/facebook.png" alt="Facebook"></a>
-                    <a href=""><img src="img/youtube.png" alt="YouTube"></a>
-                    <a href=""><img src="img/flickr.png" alt="Flickr"></a>
-                </div>
-            </div>
-        </footer>
-
-        <script>
-            document.getElementById('trilhaForm').addEventListener('submit', async function (event) {
-                event.preventDefault();
-
-                const formData = new FormData(event.target);
-                const data = Object.fromEntries(formData);
-
-                try {
-                    const response = await fetch('http://localhost:9000/trilhas', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data),
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        alert(result.mensagem);
-                        event.target.reset();
-                    } else {
-                        const error = await response.json();
-                        alert(error.mensagem);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Ocorreu um erro ao cadastrar a trilha.');
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.mensagem);
+                } else {
+                    alert(result.mensagem || 'Erro ao cadastrar trilha');
                 }
-            });
-        </script>
-
-    </body>
-
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar trilha');
+            }
+        });
+    </script>
+</body>
 </html>
