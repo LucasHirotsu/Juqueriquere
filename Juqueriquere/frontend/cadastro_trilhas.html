@@ -86,5 +86,139 @@
             }
         });
     </script>
+
+    <!--
+        <h1>Gerenciamento de Trilhas</h1>
+
+    <div class="form-container">
+        <h2>Adicionar/Atualizar Trilha</h2>
+        <form id="trilha-form">
+            <input type="hidden" id="trilha-id" placeholder="ID da Trilha (somente para atualização)">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="text" id="local" placeholder="Local" required>
+            <input type="text" id="extensao" placeholder="Extensão" required>
+            <input type="text" id="altitude" placeholder="Altitude" required>
+            <input type="text" id="duracao" placeholder="Duração" required>
+            <input type="text" id="dificuldade" placeholder="Dificuldade" required>
+            <input type="text" id="monitoria" placeholder="Monitoria" required>
+            <textarea id="caracteristicas" placeholder="Características" required></textarea>
+            <textarea id="descricao" placeholder="Descrição" required></textarea>
+            <input type="text" id="agendamento" placeholder="Agendamento" required>
+            <input type="text" id="horario" placeholder="Horário" required>
+            <input type="text" id="imagem" placeholder="URL da Imagem" required>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <div class="trilhas-container" id="trilhas-container">
+        <h2>Lista de Trilhas</h2>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const trilhaForm = document.getElementById('trilha-form');
+            const trilhasContainer = document.getElementById('trilhas-container');
+            
+            // Função para listar todas as trilhas
+            async function fetchTrilhas() {
+                const response = await fetch('http://localhost:9000/trilhas');
+                const trilhas = await response.json();
+                trilhasContainer.innerHTML = '';
+                trilhas.forEach(trilha => {
+                    const trilhaDiv = document.createElement('div');
+                    trilhaDiv.classList.add('trilha');
+                    trilhaDiv.innerHTML = `
+                        <h3>${trilha.nome}</h3>
+                        <p><strong>Local:</strong> ${trilha.local}</p>
+                        <p><strong>Extensão:</strong> ${trilha.extensao}</p>
+                        <p><strong>Altitude:</strong> ${trilha.altitude}</p>
+                        <p><strong>Duração:</strong> ${trilha.duracao}</p>
+                        <p><strong>Dificuldade:</strong> ${trilha.dificuldade}</p>
+                        <p><strong>Monitoria:</strong> ${trilha.monitoria}</p>
+                        <p><strong>Características:</strong> ${trilha.caracteristicas}</p>
+                        <p><strong>Descrição:</strong> ${trilha.descricao}</p>
+                        <p><strong>Agendamento:</strong> ${trilha.agendamento}</p>
+                        <p><strong>Horário:</strong> ${trilha.horario}</p>
+                        <p><strong>Imagem:</strong> <a href="${trilha.imagem}" target="_blank">Ver Imagem</a></p>
+                        <button onclick="editTrilha(${trilha.idTrilhas})">Editar</button>
+                        <button onclick="deleteTrilha(${trilha.idTrilhas})">Deletar</button>
+                    `;
+                    trilhasContainer.appendChild(trilhaDiv);
+                });
+            }
+
+            // Função para adicionar ou atualizar trilha
+            trilhaForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const id = document.getElementById('trilha-id').value;
+                const trilhaData = {
+                    nome: document.getElementById('nome').value,
+                    local: document.getElementById('local').value,
+                    extensao: document.getElementById('extensao').value,
+                    altitude: document.getElementById('altitude').value,
+                    duracao: document.getElementById('duracao').value,
+                    dificuldade: document.getElementById('dificuldade').value,
+                    monitoria: document.getElementById('monitoria').value,
+                    caracteristicas: document.getElementById('caracteristicas').value,
+                    descricao: document.getElementById('descricao').value,
+                    agendamento: document.getElementById('agendamento').value,
+                    horario: document.getElementById('horario').value,
+                    imagem: document.getElementById('imagem').value
+                };
+                
+                if (id) {
+                    await fetch(`http://localhost:9000/trilhas/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(trilhaData)
+                    });
+                } else {
+                    await fetch('http://localhost:9000/trilhas', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(trilhaData)
+                    });
+                }
+                
+                trilhaForm.reset();
+                fetchTrilhas();
+            });
+
+            // Função para preencher o formulário com os dados da trilha a ser editada
+            window.editTrilha = async function(id) {
+                const response = await fetch(`http://localhost:9000/trilhas/${id}`);
+                const trilha = (await response.json())[0];
+                document.getElementById('trilha-id').value = trilha.idTrilhas;
+                document.getElementById('nome').value = trilha.nome;
+                document.getElementById('local').value = trilha.local;
+                document.getElementById('extensao').value = trilha.extensao;
+                document.getElementById('altitude').value = trilha.altitude;
+                document.getElementById('duracao').value = trilha.duracao;
+                document.getElementById('dificuldade').value = trilha.dificuldade;
+                document.getElementById('monitoria').value = trilha.monitoria;
+                document.getElementById('caracteristicas').value = trilha.caracteristicas;
+                document.getElementById('descricao').value = trilha.descricao;
+                document.getElementById('agendamento').value = trilha.agendamento;
+                document.getElementById('horario').value = trilha.horario;
+                document.getElementById('imagem').value = trilha.imagem;
+            }
+
+            // Função para deletar trilha
+            window.deleteTrilha = async function(id) {
+                await fetch(`http://localhost:9000/trilhas/${id}`, {
+                    method: 'DELETE'
+                });
+                fetchTrilhas();
+            }
+
+            // Carregar trilhas ao carregar a página
+            fetchTrilhas();
+        });
+    </script>
+    -->
 </body>
 </html>
