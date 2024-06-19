@@ -7,7 +7,44 @@
         <link rel="stylesheet" href="css/base.css">
         <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     </head>
+    <script>
+        async function fetchTrilhas() {
+            try {
+                const response = await fetch('http://localhost:9000/trilhas');
+                const trilhas = await response.json();
+                const cardsContainer = document.getElementById('cards-container');
 
+                trilhas.forEach(trilha => {
+                    const card = document.createElement('div');
+                    card.className = 'card-trilha';
+
+                    const imageUrl = trilha.imagem || 'https://via.placeholder.com/300'; // Use uma imagem padrão se a URL da imagem estiver vazia
+
+                    card.innerHTML = `
+                        <img src="${imageUrl}" alt="${trilha.nome}">
+                        <div class="card-container">
+                            <h4>${trilha.nome}</h4>
+                            <p>${trilha.descricao}</p>
+                            <br>
+                            <p><span>Extensão:</span> ${trilha.extensao} metros</p>
+                            <br>
+                            <p>
+                                <span>Horário de Funcionamento:</span> ${trilha.horario}
+                            </p>
+                            <br>
+                            <p><span>Acesso:</span> ${trilha.agendamento ? 'Agendamento necessário' : 'Gratuito'}</p>
+                        </div>
+                    `;
+
+                    cardsContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar trilhas:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchTrilhas);
+    </script>
     <body>
         <div class="nav center horizontal">
             <div class="nav-container horizontal center">
@@ -40,72 +77,13 @@
                 <a href="trilhas-all.html" class="botao">Ver todas as trilhas</a>
 
                 <h1>Em destaque:</h1>
+               
                 <div class="trilhas gap">
-                    <a href="">
-                        <div class="card-trilha">
-                            <img src="https://s1.static.brasilescola.uol.com.br/be/2022/04/capivaras.jpg" alt="">
-                            <div class="card-container">
-                                <h4>Trilha da Capivara</h4>
-                                <p>
-                                    Caminho que se estende do final do píer até uma área do Rio Juqueriquerê, frequentada por canoístas e visitada por capivaras.
-                                </p>
-                                <br>
-                                <p><span>Extensão:</span> 125 metros</p>
-                                <br>
-                                <p>
-                                    <span>Horário de Funcionamento:</span>
-                                    Terça a sexta-feira: 9h30 às 16h30
-                                    Sábados, domingos e feriados: 9h às 16h.
-                                </p>
-                                <br>
-                                <p><span>Acesso:</span> Gratuito</p>
-                            </div>
-                        </div>
-                    </a>
 
-                    <a href="">
-                        <div class="card-trilha">
-                            <img src="https://metsul.com/wp-content/uploads/2023/05/capivara.jpg" alt="">
-                            <div class="card-container">
-                                <h4>Trilha da Capivara</h4>
-                                <p>
-                                    Caminho que se estende do final do píer até uma área do Rio Juqueriquerê, frequentada por canoístas e visitada por capivaras.
-                                </p>
-                                <br>
-                                <p><span>Extensão:</span> 125 metros</p>
-                                <br>
-                                <p>
-                                    <span>Horário de Funcionamento:</span>
-                                    Terça a sexta-feira: 9h30 às 16h30
-                                    Sábados, domingos e feriados: 9h às 16h.
-                                </p>
-                                <br>
-                                <p><span>Acesso:</span> Gratuito</p>
-                            </div>
-                        </div>
-                    </a>
+                    <div class="cards-horizontal" id="cards-container">
+                        <!-- Cards das trilhas serão inseridos aqui -->
+                    </div>
 
-                    <a href="">
-                        <div class="card-trilha">
-                            <img src="https://prefeitura.pbh.gov.br/sites/default/files/styles/slideshow/public/noticia/img/2017-07/Capivaras%20-%20Foto%20Carlos%20Avelin%20PBH.jpg?itok=3G5YlSol" alt="">
-                            <div class="card-container">
-                                <h4>Trilha da Capivara</h4>
-                                <p>
-                                    Caminho que se estende do final do píer até uma área do Rio Juqueriquerê, frequentada por canoístas e visitada por capivaras.
-                                </p>
-                                <br>
-                                <p><span>Extensão:</span> 125 metros</p>
-                                <br>
-                                <p>
-                                    <span>Horário de Funcionamento:</span>
-                                    Terça a sexta-feira: 9h30 às 16h30
-                                    Sábados, domingos e feriados: 9h às 16h.
-                                </p>
-                                <br>
-                                <p><span>Acesso:</span> Gratuito</p>
-                            </div>
-                        </div>
-                    </a>
                 </div>
             </section>
         </div>
