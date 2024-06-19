@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,43 +10,65 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+
         form {
             display: flex;
             flex-direction: column;
             max-width: 400px;
         }
-        input, button {
+
+        input,
+        button {
             margin-bottom: 10px;
             padding: 10px;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
+
 <body>
     <h1>Cadastro de Trilhas</h1>
-    <form id="trilhaForm">
-        <input type="text" id="nome" placeholder="Nome" required>
-        <input type="text" id="local" placeholder="Local" required>
-        <input type="text" id="extensao" placeholder="Extensão" required>
-        <input type="text" id="altitude" placeholder="Altitude" required>
-        <input type="text" id="duracao" placeholder="Duração" required>
-        <input type="text" id="dificuldade" placeholder="Dificuldade" required>
-        <input type="text" id="monitoria" placeholder="Monitoria" required>
-        <input type="text" id="caracteristicas" placeholder="Características" required>
-        <input type="text" id="descricao" placeholder="Descrição" required>
-        <input type="text" id="agendamento" placeholder="Agendamento" required>
-        <input type="text" id="horario" placeholder="Horário" required>
-        <input type="text" id="imagem" placeholder="Imagem" required>
-        <button type="submit">Cadastrar Trilha</button>
-    </form>
+<form id="trilhaForm">
+    <input type="text" id="nome" name="nome" placeholder="Nome" required><br>
+    <input type="text" id="local" name="local" placeholder="Local" required><br>
+    <input type="number" id="extensao" name="extensao" placeholder="Extensão (em km)" step="0.01" required><br>
+    <input type="number" id="altitude" name="altitude" placeholder="Altitude (em metros)" step="0.01"><br>
+    <input type="number" id="duracao" name="duracao" placeholder="Duração (em minutos)" required><br>
+    <label for="dificuldade">Dificuldade:</label>
+    <input type="number" id="dificuldade" name="dificuldade" min="1" max="5" placeholder="1 a 5" required><br>
+    <label for="agendamento">Agendamento:</label>
+    <input type="checkbox" id="agendamento" name="agendamento" value="1"><br>
+    <label for="monitoria">Monitoria:</label>
+    <input type="checkbox" id="monitoria" name="monitoria" value="1"><br>
+    <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Características" required><br>
+    <input type="text" id="descricao" name="descricao" placeholder="Descrição" required><br>
+    <input type="text" id="horario" name="horario" placeholder="Horário" required><br>
+    <input type="text" id="imagem" name="imagem" placeholder="URL da Imagem"><br>
+    
+    <button type="submit">Cadastrar Trilha</button>
+</form>
+
+
+<script>
+    var output = document.querySelector('output[for="dificuldade"]');
+    var slider = document.getElementById('dificuldade');
+    slider.addEventListener('input', function() {
+        output.textContent = slider.value;
+    });
+</script>
+
+
+
     <script>
         document.getElementById('trilhaForm').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -221,4 +244,5 @@
     </script>
     -->
 </body>
+
 </html>
