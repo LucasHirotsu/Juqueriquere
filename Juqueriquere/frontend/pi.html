@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pi.css"></link>
+    <script src="js/pi.js" defer></script>
+</head>
+<body>
+    <h2>ESCOLHA A DATA DA VISITA</h2>
+    <br>
+    <div class="calendar">
+        <div class="navigation">
+            <div class="nav-button" id="prev-month">&lt;</div>
+            <div class="month">
+                <div class="nav-button" id="prev-year">&lt;&lt;</div>
+                <div class="month-text" id="current-month">Abril 2024</div>
+                <div class="nav-button" id="next-year">&gt;&gt;</div>
+            </div>
+            <div class="nav-button" id="next-month">&gt;</div>
+        </div>
+        <div class="weekdays">
+            <div class="weekday">dom.</div>
+            <div class="weekday">seg.</div>
+            <div class="weekday">ter.</div>
+            <div class="weekday">qua.</div>
+            <div class="weekday">qui.</div>
+            <div class="weekday">sex.</div>
+            <div class="weekday">sáb.</div>
+        </div>
+        <div class="days" id="days"></div>
+        <br>
+        <button id="sendButton">Enviar</button>
+
+
+        <div class="temporada"><p>Temporada 2024</p></div>
+        <p>Fechado / aguardando tarifa</p>
+    </div>
+    <br>
+    <div id="selectedDateContainer"></div>
+</body>
+</html>
