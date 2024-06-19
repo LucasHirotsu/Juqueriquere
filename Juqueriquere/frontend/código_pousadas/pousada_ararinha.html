@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #f3f7f6; }
+        h2 { color: rgb(0, 0, 0); font-size: 200%; }
+        #main-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        #main-content img {
+            width: 500px; 
+            margin-bottom: 20px; 
+            margin-left: -3px;
+        }  
+        #image-gallery img {
+            width: 200px; 
+            margin: 30px;
+            margin-left: -3px;
+        }
+
+        /* Estilo para a caixa de texto */
+        #text-box {
+            width: 30%;
+            padding: 20px;
+            position: absolute;
+            margin-left: 50%;
+            top: 65%; 
+            transform: translateY(-50%); 
+        }
+
+        /* Estilo para o card */
+        .card {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 2rem;
+            margin-bottom: 10px; 
+            margin-top: 0; 
+        }
+        .card-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 10px; 
+            margin-top: 0; 
+            color: #6c757d;
+        }
+        .card-text {
+            font-size: 1.5rem;
+            margin-bottom: 10px; 
+        }
+        .card-link {
+            color: green; 
+            text-decoration: none;
+        }
+        .card-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="main-content">
+            <div>
+                <img src="img_pousadas/logo (1).png">
+                <h2>Pousada Ararinha</h2>
+                <div id="text-box">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Proprietário(a): Cristiane Ferreira</h6>
+                            <p class="card-text">
+                                Contato: (12) 95776-4724<br>
+                                <br>
+                                Faixa de preço: R$ 500 - R$ 800<br>
+                                <br>
+                                Endereço: Av Alexandre Pires, 765, Ituba<br>
+                                <br>
+                                Acessibilidade: Não<br>
+                                <br>
+                                Sinal: Não<br>
+                                <br>
+                                Infraestrutura: 3 quartos, sendo 1 suíte / 12 leitos / 1 banheiro com chuveiro com água quente / 1 sala / 1 cozinha com microondas, fogão e geladeira / 1 lavanderia / estacionamento<br>
+                                <br>
+                                Acomodações:<br>
+                                <a href="../código_form_reserva/pousada_ararinha/quarto_amazonas.html" class="card-link">Quarto Amazonas - 3 leitos em 1 beliche + 1 cama individual<br></a>
+                                <a href="../código_form_reserva/pousada_ararinha/quarto_pará.html" class="card-link">Quarto Pará - 4 leitos em 2 beliches<br></a>
+                                <a href="../código_form_reserva/pousada_ararinha/quarto_acre.html" class="card-link">Quarto Acre - 3 leitos em 1 beliche + 1 cama individual<br></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <img src="img_pousadas/Pousada Ararinha.jpg" style="width: 700px;">
+                <!-- Imagens do gallery -->
+                <div id="image-gallery">
+                    <img src="img_pousadas/Quarto Ararinha.jpg" alt="Primeira imagem">
+                    <img src="img_pousadas/Sala Ararinha.jpg" alt="Segunda imagem">
+                    <img src="img_pousadas/Banheiro Ararinha.jpg" alt="Terceira imagem">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

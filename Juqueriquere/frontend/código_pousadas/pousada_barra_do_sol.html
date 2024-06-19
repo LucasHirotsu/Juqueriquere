@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #f3f7f6; }
+        h2 { color: rgb(0, 0, 0); font-size: 200%; }
+        #main-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        #main-content img {
+            width: 500px; 
+            margin-bottom: 20px;
+            margin-left: -3px;
+        }  
+        #image-gallery img {
+            width: 200px; 
+            margin: 30px;
+            margin-left: -3px;
+        }
+
+        /* Estilo para a caixa de texto */
+        #text-box {
+            width: 30%;
+            padding: 20px;
+            position: absolute;
+            margin-left: 50%;
+            top: 65%; 
+            transform: translateY(-50%); 
+        }
+
+        /* Estilo para o card */
+        .card {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 2rem;
+            margin-bottom: 10px; 
+            margin-top: 0; 
+        }
+        .card-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 10px; 
+            margin-top: 0; 
+            color: #6c757d;
+        }
+        .card-text {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .card-link {
+            color: green; 
+            text-decoration: none;
+        }
+        .card-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="main-content">
+            <div>
+                <img src="img_pousadas/logo (1).png">
+                <h2>Pousada Barra do Sol</h2>
+                <div id="text-box">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Proprietário(a): Luziete Santana</h6>
+                            <p class="card-text">
+                                Contato: (12) 998990763<br>
+                                <br>
+                                Faixa de preço: R$ 600 - R$ 800<br>
+                                <br>
+                                Endereço: Av Rita Lee, 865, Ituba<br>
+                                <br>
+                                Acessibilidade: Sim<br>
+                                <br>
+                                Sinal: Sim<br>
+                                <br>
+                                Infraestrutura: 4 quartos, sendo 1 suíte / 12 leitos / 2 banheiros com chuveiro com água quente / 1 sala / 1 cozinha com microondas, fogão e geladeira e wifi grátis disponível / 1 lavanderia / estacionamento<br>
+                                <br>
+                                Acomodações:<br>
+                                <a href="../código_form_reserva/pousada_barra_do_sol/quarto_luz.html" class="card-link">Quarto Luz - 3 leitos<br></a>
+                                <a href="../código_form_reserva/pousada_barra_do_sol/quarto_dia.html" class="card-link">Quarto Dia - 3 leitos com beliche<br></a>
+                                <a href="../código_form_reserva/pousada_barra_do_sol/quarto_praia.html" class="card-link">Quarto Praia - 3 leitos<br></a>
+                                <a href="../código_form_reserva/pousada_barra_do_sol/quarto_brilhante.html" class="card-link">Quarto Brilhante - 3 leitos<br></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <img src="img_pousadas/Pousada Barra do Sol.jpg" style="width: 700px;">
+                <!-- Imagens do gallery -->
+                <div id="image-gallery">
+                    <img src="img_pousadas/Quarto Barra do Sol.jpg" alt="Primeira imagem">
+                    <img src="img_pousadas/Sala Barra do Sol.jpg" alt="Segunda imagem">
+                    <img src="img_pousadas/Banheiro Barra do Sol.jpg" alt="Terceira imagem">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

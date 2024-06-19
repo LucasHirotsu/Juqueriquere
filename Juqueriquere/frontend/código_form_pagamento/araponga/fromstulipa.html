@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Pagamento</title>
+  <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../src/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 logo-container">
+        <img alt="logo" src="../src/img/logo - Copia.png">
+      </div>
+
+      <div class="col-md-8 donation-field">
+        <form><br><br>
+          <div class="text-center">
+            <div class="donation-value mx-auto" id="valor-doacao" style="color: #008a66;">R$: 1789.87</div>
+          </div> <br>
+          <div class="container1"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tabbable" id="tabs-17727">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#tab2" data-toggle="tab">PIX</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tab3" data-toggle="tab">Boleto</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab2">
+            <p class="preencha-campos">Preencha os campos corretamente.</p>
+            <br><br>
+            <div class="text-center">
+              <img src="../src/img/frame2.png" alt="Imagem PIX" style="max-width: 35%; height: auto;">
+          </div>
+          <br><br>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nome-pix">Nome:</label>
+                    <input type="text" id="nome-pix" name="nome-pix" class="form-control" required><br>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email-pix">E-mail:</label>
+                    <input type="email" id="email-pix" name="email-pix" class="form-control" placeholder="nome@exemplo.com" required><br>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="comprovante-pix">
+                    <label class="form-check-label" for="comprovante-pix">
+                      Quero receber comprovante de pagamento via E-mail
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="confirmacao-pix">
+                    <label class="form-check-label" for="confirmacao-pix">
+                      Declaro que li e confirmo pagamento
+                    </label>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary mx-auto">Confirmar pagamento</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab3">
+            <p class="preencha-campos">Preencha os campos corretamente.</p>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="nome-boleto">Nome:</label>
+                    <input type="text" id="nome-boleto" name="nome-boleto" class="form-control" required><br>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email-boleto">E-mail:</label>
+                    <input type="email" id="email-boleto" name="email-boleto" class="form-control" placeholder="nome@exemplo.com" required><br>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cep-boleto">CEP:</label>
+                    <input type="text" id="cep-boleto" name="cep-boleto" class="form-control" pattern="[0-9]{5}-?[0-9]{3}" placeholder="xxxxx-xxx" required><br>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cpf-cnpj-boleto">CPF ou CNPJ:</label>
+                    <input type="text" id="cpf-cnpj-boleto" name="cpf-cnpj-boleto" class="form-control" pattern="[0-9]{14}" placeholder="xxxxxxxxxxxxxx" required><br>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="confirmacao-boleto">
+                    <label class="form-check-label" for="confirmacao-boleto">
+                      Declaro que li e confirmo pagamento
+                    </label>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary mx-auto">Gerar boleto</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<footer>
+      <div class="container center conteudo">
+          <img src="img/caraguatatuba.png" alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+    
+    
+          <div class="links horizontal">
+              <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+              <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+              <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+              <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+          </div>
+      </div>
+    </footer> 
+  !-->
+    
+</body>
+</html>
+
+  </div>
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+
+
+	  
+	  
+	  

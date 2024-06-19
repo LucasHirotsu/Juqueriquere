@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-9TuF2Xrzz+djP3wSo+LaAOOzN7zBhPOd9y+Y2b3QWKU8u9LC/Z+mnAsJ2n4cCJCtHSyM8wX1z2U+/BbImHtxVg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Formulário</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-image">
+      <img src="../assets/img/hotel.png" alt="">
+    </div>
+    <div class="form">
+      <form action="#">
+        <div class="form-header">
+          <div class="title">
+            <h1>Insira seus dados</h1>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-box">
+            <label for="firstname">Primeiro Nome</label>
+            <input id="firstname" type="text" name="firstname" placeholder="Digite seu primeiro nome" required>
+          </div>
+
+          <div class="input-box">
+            <label for="lastname">Sobrenome</label>
+            <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
+          </div>
+
+          <div class="input-box">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+          </div>
+
+          <div class="input-box">
+            <label for="number">Celular</label>
+            <input id="number" type="tel" name="number" placeholder="(xx) xxxx-xxxx" required>
+          </div>
+
+          <div class="input-box">
+            <label for="dob">Data de Nascimento</label>
+            <input id="dob" type="date" name="dob" required>
+          </div>
+
+          <div class="input-box">
+            <label for="adults">Adultos</label>
+            <input id="adults" type="number" name="adults" placeholder="Número de adultos" min="0" required>
+          </div>
+
+          <div class="input-box">
+            <label for="children">Crianças</label>
+            <input id="children" type="number" name="children" placeholder="Número de crianças" min="0" required>
+          </div>
+
+          <div class="input-box">
+            <label for="checkin">Check-in</label>
+            <input id="checkin" type="date" name="checkin" required>
+          </div>
+
+          <div class="input-box">
+            <label for="checkout">Check-out</label>
+            <input id="checkout" type="date" name="checkout" required>
+          </div>
+
+          <div class="input-box observations-box">
+            <label for="observations">Observações Especiais</label>
+            <textarea id="observations" name="observations" placeholder="Digite suas observações" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="gender-inputs">
+          <div class="gender-title">
+            <h6>Gênero</h6>
+          </div>
+
+          <div class="gender-group">
+            <div class="gender-input">
+              <input id="female" type="radio" name="gender">
+              <label for="female">Feminino</label>
+            </div>
+
+            <div class="gender-input">
+              <input id="male" type="radio" name="gender">
+              <label for="male">Masculino</label>
+            </div>
+
+            <div class="gender-input">
+              <input id="others" type="radio" name="gender">
+              <label for="others">Outros</label>
+            </div>
+
+            <div class="gender-input">
+              <input id="none" type="radio" name="gender">
+              <label for="none">Prefiro não dizer</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-text">
+          <p><small style="font-family: 'Inter', sans-serif;">Check-in - a partir das 14h00</small></p>
+        </div>
+
+        <div class="continue-button">
+          <button><a href="../../código_form_pagamento/ararinha/formsacre.html">Efetuar pagamento</a></button
