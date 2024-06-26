@@ -52,7 +52,7 @@
                 <div class="w50"><img src="https://i.pinimg.com/736x/0f/24/7b/0f247b51e209b2812761ff50f17534fe.jpg"></div>
             </div>
 
-            <form class="form-container" id="meuFormulario">
+            <form class="form-container" id="ingresso-form">
                 <h4 class="center">Garanta já seu ingresso</h4>
                 <div class="horizontal" id="pagamento">
                     <div class="w50 gap">
@@ -76,9 +76,9 @@
                     <div class="w50 gap">
                         <div>
                             <label for="value"><b>VALOR TOTAL R$ <span id="display-value">0</span>.00</b></label>
-                            <input type="text" id="coupon" name="coupon" placeholder="Cupom/ Voucher:">
+                            <input type="text" id="voucher" name="voucher" placeholder="Cupom/ Voucher:">
                         </div>
-                        <button type="submit" id="enviar">Continuar</button>
+                        <button type="submit">Continuar</button>
                     </div>
                 </div>
             </form>
@@ -104,6 +104,7 @@
         const increaseButton = document.getElementById('increase');
         const quantityInput = document.getElementById('quantity');
         const displayValue = document.getElementById("display-value");
+        const valueInput = document.getElementById("value");
 
         let value = 0;
 
@@ -132,24 +133,10 @@
             quantityInput.value = parseInt(quantityInput.value) + 1;
         });
 
-        document.getElementById('meuFormulario').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede a submissão padrão do formulário
-            
-            // Pega os dados do formulário
-            const formData = new FormData(this);
-            
-            // Cria uma requisição AJAX
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', this.action, true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Se a submissão for bem-sucedida, redireciona para a página desejada
-                    window.location.href = 'agendamentos.html';
-                } else {
-                    alert('Erro ao enviar o formulário. Tente novamente.');
-                }
-            };
-            xhr.send(formData);
+        const form = document.getElementById('ingresso-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'agendamentos.html';
         });
     </script>
 </body>
