@@ -1,75 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Trilhas</title>
+    <title>Cadastro de Trilhas | Parque Natural Municipal do Juqueriquerê</title>
+    <link rel="stylesheet" href="css/base.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        #trilhaForm .horizontal {
+            align-items: center;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-        }
-
-        input,
-        button {
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+        input[type="checkbox"] {
+            width: 20px;
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #45a049;
+        .w50 {
+            border: 2px solid var(--bg);
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            gap: 10px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Cadastro de Trilhas</h1>
-<form id="trilhaForm">
-    <input type="text" id="nome" name="nome" placeholder="Nome" required><br>
-    <input type="text" id="local" name="local" placeholder="Local" required><br>
-    <input type="number" id="extensao" name="extensao" placeholder="Extensão (em km)" step="0.01" required><br>
-    <input type="number" id="altitude" name="altitude" placeholder="Altitude (em metros)" step="0.01"><br>
-    <input type="number" id="duracao" name="duracao" placeholder="Duração (em minutos)" required><br>
-    <label for="dificuldade">Dificuldade:</label>
-    <input type="number" id="dificuldade" name="dificuldade" min="1" max="5" placeholder="1 a 5" required><br>
-    <label for="agendamento">Agendamento:</label>
-    <input type="checkbox" id="agendamento" name="agendamento" value="1"><br>
-    <label for="monitoria">Monitoria:</label>
-    <input type="checkbox" id="monitoria" name="monitoria" value="1"><br>
-    <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Características" required><br>
-    <input type="text" id="descricao" name="descricao" placeholder="Descrição" required><br>
-    <input type="text" id="horario" name="horario" placeholder="Horário" required><br>
-    <input type="text" id="imagem" name="imagem" placeholder="URL da Imagem"><br>
-    
-    <button type="submit">Cadastrar Trilha</button>
-</form>
+    <div class="nav center horizontal">
+        <div class="nav-container horizontal center">
+            <a href="explorar.html" class="nav-item">
+                <div class="center"><img src="img/explorar.png" alt="Explorar">
+                    <p>Explorar</p>
+                </div>
+            </a>
+            <a href="index.html" class="nav-item home">
+                <div class="center"><img src="img/logo.png" alt="Início">
+                    <p>Início</p>
+                </div>
+            </a>
+            <a href="sobre.html" class="nav-item">
+                <div class="center"><img src="img/info.png" alt="Informações">
+                    <p>Contato</p>
+                </div>
+            </a>
+        </div>
+    </div>
 
+    <section class="banner center" id="banner">
+        <div class="gradiente center">
+            <img src="img/Site Parque.svg" alt="logo" class="logo">
+        </div>
+    </section>
 
-<script>
-    var output = document.querySelector('output[for="dificuldade"]');
-    var slider = document.getElementById('dificuldade');
-    slider.addEventListener('input', function() {
-        output.textContent = slider.value;
-    });
-</script>
+    <section class="container conteudo center">
+        <h1>Cadastro de Trilhas</h1>
+        <form id="trilhaForm">
+            <div>
+                <label for="nome">Nome da Trilha:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite o nome da trilha" required>
+            </div>
 
+            <div>
+                <label for="local">Localização:</label>
+                <input type="text" id="local" name="local" placeholder="Digite a localização" required>
+            </div>
 
+            <div>
+                <label for="extensao">Extensão (em km):</label>
+                <input type="number" id="extensao" name="extensao" placeholder="Digite a extensão em km" step="0.01"
+                    required>
+            </div>
+
+            <div>
+                <label for="altitude">Altitude (em metros):</label>
+                <input type="number" id="altitude" name="altitude" placeholder="Digite a altitude em metros"
+                    step="0.01">
+            </div>
+
+            <div>
+                <label for="duracao">Duração (em minutos):</label>
+                <input type="number" id="duracao" name="duracao" placeholder="Digite a duração em minutos" required>
+            </div>
+
+            <div class="slider-container horizontal">
+                <label for="dificuldade">Nível de Dificuldade:</label>
+                <span id="dificuldade-value">3</span>
+                <input type="range" id="dificuldade" name="dificuldade" min="1" max="5" required>
+            </div>
+
+            <div class="horizontal">
+
+                <div class="horizontal w50">
+                    <label for="agendamento">Requer Agendamento:</label>
+                    <input type="checkbox" id="agendamento" name="agendamento" value="1">
+                </div>
+                <div class="horizontal w50">
+                    <label for="monitoria">Monitoria Disponível:</label>
+                    <input type="checkbox" id="monitoria" name="monitoria" value="1">
+                </div>
+            </div>
+
+            <div>
+                <label for="caracteristicas">Características:</label>
+                <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Digite as características"
+                    required>
+            </div>
+
+            <div>
+                <label for="descricao">Descrição da Trilha:</label>
+                <input type="text" id="descricao" name="descricao" placeholder="Digite a descrição da trilha" required>
+            </div>
+
+            <div>
+                <label for="horario">Horário de Funcionamento:</label>
+                <input type="text" id="horario" name="horario" placeholder="Digite o horário de funcionamento" required>
+            </div>
+
+            <div>
+                <label for="imagem">URL da Imagem:</label>
+                <input type="text" id="imagem" name="imagem" placeholder="Digite a URL da imagem">
+            </div>
+
+            <button type="submit">Cadastrar Trilha</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container center conteudo">
+            <img src="img/caraguatatuba.png"
+                alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+
+            <div class="links horizontal">
+                <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+                <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+                <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+                <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+            </div>
+        </div>
+    </footer>
 
     <script>
+        document.getElementById('dificuldade').addEventListener('input', function () {
+            document.getElementById('dificuldade-value').textContent = this.value;
+        });
+
         document.getElementById('trilhaForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
@@ -80,10 +155,10 @@
                 altitude: document.getElementById('altitude').value,
                 duracao: document.getElementById('duracao').value,
                 dificuldade: document.getElementById('dificuldade').value,
-                monitoria: document.getElementById('monitoria').value,
+                monitoria: document.getElementById('monitoria').checked ? 1 : 0,
                 caracteristicas: document.getElementById('caracteristicas').value,
                 descricao: document.getElementById('descricao').value,
-                agendamento: document.getElementById('agendamento').value,
+                agendamento: document.getElementById('agendamento').checked ? 1 : 0,
                 horario: document.getElementById('horario').value,
                 imagem: document.getElementById('imagem').value,
             };
@@ -110,139 +185,6 @@
         });
     </script>
 
-    <!--
-        <h1>Gerenciamento de Trilhas</h1>
-
-    <div class="form-container">
-        <h2>Adicionar/Atualizar Trilha</h2>
-        <form id="trilha-form">
-            <input type="hidden" id="trilha-id" placeholder="ID da Trilha (somente para atualização)">
-            <input type="text" id="nome" placeholder="Nome" required>
-            <input type="text" id="local" placeholder="Local" required>
-            <input type="text" id="extensao" placeholder="Extensão" required>
-            <input type="text" id="altitude" placeholder="Altitude" required>
-            <input type="text" id="duracao" placeholder="Duração" required>
-            <input type="text" id="dificuldade" placeholder="Dificuldade" required>
-            <input type="text" id="monitoria" placeholder="Monitoria" required>
-            <textarea id="caracteristicas" placeholder="Características" required></textarea>
-            <textarea id="descricao" placeholder="Descrição" required></textarea>
-            <input type="text" id="agendamento" placeholder="Agendamento" required>
-            <input type="text" id="horario" placeholder="Horário" required>
-            <input type="text" id="imagem" placeholder="URL da Imagem" required>
-            <button type="submit">Salvar</button>
-        </form>
-    </div>
-
-    <div class="trilhas-container" id="trilhas-container">
-        <h2>Lista de Trilhas</h2>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const trilhaForm = document.getElementById('trilha-form');
-            const trilhasContainer = document.getElementById('trilhas-container');
-            
-            // Função para listar todas as trilhas
-            async function fetchTrilhas() {
-                const response = await fetch('http://localhost:9000/trilhas');
-                const trilhas = await response.json();
-                trilhasContainer.innerHTML = '';
-                trilhas.forEach(trilha => {
-                    const trilhaDiv = document.createElement('div');
-                    trilhaDiv.classList.add('trilha');
-                    trilhaDiv.innerHTML = `
-                        <h3>${trilha.nome}</h3>
-                        <p><strong>Local:</strong> ${trilha.local}</p>
-                        <p><strong>Extensão:</strong> ${trilha.extensao}</p>
-                        <p><strong>Altitude:</strong> ${trilha.altitude}</p>
-                        <p><strong>Duração:</strong> ${trilha.duracao}</p>
-                        <p><strong>Dificuldade:</strong> ${trilha.dificuldade}</p>
-                        <p><strong>Monitoria:</strong> ${trilha.monitoria}</p>
-                        <p><strong>Características:</strong> ${trilha.caracteristicas}</p>
-                        <p><strong>Descrição:</strong> ${trilha.descricao}</p>
-                        <p><strong>Agendamento:</strong> ${trilha.agendamento}</p>
-                        <p><strong>Horário:</strong> ${trilha.horario}</p>
-                        <p><strong>Imagem:</strong> <a href="${trilha.imagem}" target="_blank">Ver Imagem</a></p>
-                        <button onclick="editTrilha(${trilha.idTrilhas})">Editar</button>
-                        <button onclick="deleteTrilha(${trilha.idTrilhas})">Deletar</button>
-                    `;
-                    trilhasContainer.appendChild(trilhaDiv);
-                });
-            }
-
-            // Função para adicionar ou atualizar trilha
-            trilhaForm.addEventListener('submit', async function(event) {
-                event.preventDefault();
-                const id = document.getElementById('trilha-id').value;
-                const trilhaData = {
-                    nome: document.getElementById('nome').value,
-                    local: document.getElementById('local').value,
-                    extensao: document.getElementById('extensao').value,
-                    altitude: document.getElementById('altitude').value,
-                    duracao: document.getElementById('duracao').value,
-                    dificuldade: document.getElementById('dificuldade').value,
-                    monitoria: document.getElementById('monitoria').value,
-                    caracteristicas: document.getElementById('caracteristicas').value,
-                    descricao: document.getElementById('descricao').value,
-                    agendamento: document.getElementById('agendamento').value,
-                    horario: document.getElementById('horario').value,
-                    imagem: document.getElementById('imagem').value
-                };
-                
-                if (id) {
-                    await fetch(`http://localhost:9000/trilhas/${id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(trilhaData)
-                    });
-                } else {
-                    await fetch('http://localhost:9000/trilhas', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(trilhaData)
-                    });
-                }
-                
-                trilhaForm.reset();
-                fetchTrilhas();
-            });
-
-            // Função para preencher o formulário com os dados da trilha a ser editada
-            window.editTrilha = async function(id) {
-                const response = await fetch(`http://localhost:9000/trilhas/${id}`);
-                const trilha = (await response.json())[0];
-                document.getElementById('trilha-id').value = trilha.idTrilhas;
-                document.getElementById('nome').value = trilha.nome;
-                document.getElementById('local').value = trilha.local;
-                document.getElementById('extensao').value = trilha.extensao;
-                document.getElementById('altitude').value = trilha.altitude;
-                document.getElementById('duracao').value = trilha.duracao;
-                document.getElementById('dificuldade').value = trilha.dificuldade;
-                document.getElementById('monitoria').value = trilha.monitoria;
-                document.getElementById('caracteristicas').value = trilha.caracteristicas;
-                document.getElementById('descricao').value = trilha.descricao;
-                document.getElementById('agendamento').value = trilha.agendamento;
-                document.getElementById('horario').value = trilha.horario;
-                document.getElementById('imagem').value = trilha.imagem;
-            }
-
-            // Função para deletar trilha
-            window.deleteTrilha = async function(id) {
-                await fetch(`http://localhost:9000/trilhas/${id}`, {
-                    method: 'DELETE'
-                });
-                fetchTrilhas();
-            }
-
-            // Carregar trilhas ao carregar a página
-            fetchTrilhas();
-        });
-    </script>
-    -->
 </body>
 
 </html>
