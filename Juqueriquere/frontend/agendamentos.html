@@ -5,45 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos | Parque Natural Municipal do Juqueriquerê</title>
-    <link rel="stylesheet" href="css/pi.css">
-    </link>
-    <script src="js/pi.js" defer></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/agendamentos.css">
+    <script src="js/agendamentos.js" defer></script>
 </head>
 
 <body>
-    <h2>ESCOLHA A DATA DA VISITA</h2>
-    <br>
-    <div class="calendar">
-        <div class="navigation">
-            <div class="nav-button" id="prev-month">&lt;</div>
-            <div class="month">
+    <div class="nav center horizontal">
+        <div class="nav-container horizontal center">
+            <a href="explorar.html" class="nav-item">
+                <div class="center"><img src="img/explorar.png" alt="Explorar">
+                    <p>Explorar</p>
+                </div>
+            </a>
+            <a href="index.html" class="nav-item home">
+                <div class="center"><img src="img/logo.png" alt="Início">
+                    <p>Início</p>
+                </div>
+            </a>
+            <a href="sobre.html" class="nav-item">
+                <div class="center"><img src="img/info.png" alt="Informações">
+                    <p>Contato</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <section class="banner center" id="banner">
+        <div class="gradiente center">
+            <img src="img/Site Parque.svg" alt="logo" class="logo">
+        </div>
+    </section>
+
+
+    <section class="container conteudo center">
+
+        <h1>ESCOLHA A DATA DA VISITA</h1>
+
+        <div class="calendar">
+            <div class="navigation">
                 <div class="nav-button" id="prev-year">&lt;&lt;</div>
-                <div class="month-text" id="current-month">Abril 2024</div>
+                <div class="nav-button" id="prev-month">&lt;</div>
+                <div class="month">
+                    <div class="month-text" id="current-month">Abril 2024</div>
+                </div>
+                <div class="nav-button" id="next-month">&gt;</div>
                 <div class="nav-button" id="next-year">&gt;&gt;</div>
             </div>
-            <div class="nav-button" id="next-month">&gt;</div>
-        </div>
-        <div class="weekdays">
-            <div class="weekday">dom.</div>
-            <div class="weekday">seg.</div>
-            <div class="weekday">ter.</div>
-            <div class="weekday">qua.</div>
-            <div class="weekday">qui.</div>
-            <div class="weekday">sex.</div>
-            <div class="weekday">sáb.</div>
-        </div>
-        <div class="days" id="days"></div>
-        <br>
-        <button id="sendButton">Enviar</button>
 
+            <div class="weekdays">
+                <div class="weekday">dom.</div>
+                <div class="weekday">seg.</div>
+                <div class="weekday">ter.</div>
+                <div class="weekday">qua.</div>
+                <div class="weekday">qui.</div>
+                <div class="weekday">sex.</div>
+                <div class="weekday">sáb.</div>
+            </div>
 
-        <div class="temporada">
-            <p>Temporada 2024</p>
+            <div class="days" id="days"></div>
+            <button id="sendButton">Enviar</button>
+            
+            <p>Fechado / aguardando tarifa</p>
         </div>
-        <p>Fechado / aguardando tarifa</p>
-    </div>
-    <br>
-    <div id="selectedDateContainer"></div>
+        <div id="selectedDateContainer"></div>
+    
+    </section>
+
+    <footer>
+        <div class="container center conteudo">
+            <img src="img/caraguatatuba.png"
+                alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+
+            <div class="links horizontal">
+                <a href=""><img src="img/instagram.png" alt="Instagram"></a>
+                <a href=""><img src="img/facebook.png" alt="Facebook"></a>
+                <a href=""><img src="img/youtube.png" alt="YouTube"></a>
+                <a href=""><img src="img/flickr.png" alt="Flickr"></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

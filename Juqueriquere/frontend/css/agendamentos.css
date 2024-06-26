@@ -1,0 +1,94 @@
+.calendar p{
+    margin-top: 20px;
+    color: var(--bg);
+}
+
+.calendar {
+    background: var(--cor1);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-button {
+    cursor: pointer;
+    padding: 10px;
+    color: var(--bg);
+    border: 2px solid var(--bg);
+    border-radius: 5px;
+    user-select: none;
+    transition: background 0.3s;
+}
+
+.nav-button:hover {
+    background: var(--bg);
+    color: var(--cor1);
+}
+
+.month {
+    display: flex;
+    align-items: center;
+}
+
+.month-text {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 10px;
+}
+
+.weekday, .day {
+    text-align: center;
+    padding: 10px;
+    margin: 2px;
+}
+
+.weekday {
+    font-weight: bold;
+    background: var(--bg);
+    color: white;
+    border-radius: 5px;
+}
+
+.day {
+    background-color: var(--cor1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.day:hover, .selected {
+    background: var(--bg);
+    color: white;
+}
+
+#selectedDateContainer{
+    color: var(--cor1);
+}
+
+#sendButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: var(--bg);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#selectedDateContainer {
+    margin-top: 20px;
+}
