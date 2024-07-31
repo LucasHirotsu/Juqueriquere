@@ -60,37 +60,34 @@
                 <label for="nome">Nome da Trilha:</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite o nome da trilha" required>
             </div>
-
+        
             <div>
                 <label for="local">Localização:</label>
                 <input type="text" id="local" name="local" placeholder="Digite a localização" required>
             </div>
-
+        
             <div>
                 <label for="extensao">Extensão (em km):</label>
-                <input type="number" id="extensao" name="extensao" placeholder="Digite a extensão em km" step="0.01"
-                    required>
+                <input type="number" id="extensao" name="extensao" placeholder="Digite a extensão em km" step="0.01" required>
             </div>
-
+        
             <div>
                 <label for="altitude">Altitude (em metros):</label>
-                <input type="number" id="altitude" name="altitude" placeholder="Digite a altitude em metros"
-                    step="0.01">
+                <input type="number" id="altitude" name="altitude" placeholder="Digite a altitude em metros" step="0.01">
             </div>
-
+        
             <div>
                 <label for="duracao">Duração (em minutos):</label>
                 <input type="number" id="duracao" name="duracao" placeholder="Digite a duração em minutos" required>
             </div>
-
+        
             <div class="slider-container horizontal">
                 <label for="dificuldade">Nível de Dificuldade:</label>
                 <span id="dificuldade-value">3</span>
                 <input type="range" id="dificuldade" name="dificuldade" min="1" max="5" required>
             </div>
-
+        
             <div class="horizontal">
-
                 <div class="horizontal w50">
                     <label for="agendamento">Requer Agendamento:</label>
                     <input type="checkbox" id="agendamento" name="agendamento" value="1">
@@ -100,30 +97,36 @@
                     <input type="checkbox" id="monitoria" name="monitoria" value="1">
                 </div>
             </div>
-
+        
             <div>
                 <label for="caracteristicas">Características:</label>
-                <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Digite as características"
-                    required>
+                <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Digite as características" required>
             </div>
-
+        
             <div>
                 <label for="descricao">Descrição da Trilha:</label>
                 <input type="text" id="descricao" name="descricao" placeholder="Digite a descrição da trilha" required>
             </div>
-
+        
             <div>
                 <label for="horario">Horário de Funcionamento:</label>
                 <input type="text" id="horario" name="horario" placeholder="Digite o horário de funcionamento" required>
             </div>
-
+        
             <div>
                 <label for="imagem">URL da Imagem:</label>
                 <input type="text" id="imagem" name="imagem" placeholder="Digite a URL da imagem">
             </div>
-
+        
+            <div>
+                <label for="destaque">Destaque:</label>
+                <input type="checkbox" id="destaque" name="destaque" value="1">
+                <span>Marque se a trilha deve estar em destaque.</span>
+            </div>
+        
             <button type="submit">Cadastrar Trilha</button>
         </form>
+        
     </section>
 
     <footer>
@@ -144,10 +147,10 @@
         document.getElementById('dificuldade').addEventListener('input', function () {
             document.getElementById('dificuldade-value').textContent = this.value;
         });
-
+    
         document.getElementById('trilhaForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-
+    
             const trilha = {
                 nome: document.getElementById('nome').value,
                 local: document.getElementById('local').value,
@@ -156,13 +159,14 @@
                 duracao: document.getElementById('duracao').value,
                 dificuldade: document.getElementById('dificuldade').value,
                 monitoria: document.getElementById('monitoria').checked ? 1 : 0,
+                agendamento: document.getElementById('agendamento').checked ? 1 : 0,
                 caracteristicas: document.getElementById('caracteristicas').value,
                 descricao: document.getElementById('descricao').value,
-                agendamento: document.getElementById('agendamento').checked ? 1 : 0,
                 horario: document.getElementById('horario').value,
                 imagem: document.getElementById('imagem').value,
+                destaque: document.getElementById('destaque').checked ? 1 : 0 // Captura o valor do checkbox de destaque
             };
-
+    
             try {
                 const response = await fetch('http://localhost:9000/trilhas', {
                     method: 'POST',
@@ -171,7 +175,7 @@
                     },
                     body: JSON.stringify(trilha)
                 });
-
+    
                 const result = await response.json();
                 if (response.ok) {
                     alert(result.mensagem);
@@ -184,6 +188,7 @@
             }
         });
     </script>
+    
 
 </body>
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trilhas | Parque Natural Municipal do Juqueriquerê</title>
+    <title>Todas as trilhas | Parque Natural Municipal do Juqueriquerê</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
@@ -14,15 +15,14 @@
             const trilhas = await response.json();
             const cardsContainer = document.getElementById('cards-container');
 
-            const trilhasEmDestaque = trilhas.filter(trilha => trilha.destaque === 1);
-
+            // Limpa o container antes de adicionar novos cards
             cardsContainer.innerHTML = '';
 
-            trilhasEmDestaque.forEach(trilha => {
+            trilhas.forEach(trilha => {
                 const card = document.createElement('div');
                 card.className = 'card-trilha';
 
-                const imageUrl = trilha.imagem || 'https://via.placeholder.com/300'; 
+                const imageUrl = trilha.imagem || 'https://via.placeholder.com/300';
 
                 card.innerHTML = `
                     <img src="${imageUrl}" alt="${trilha.nome}">
@@ -49,17 +49,27 @@
 
     document.addEventListener('DOMContentLoaded', fetchTrilhas);
 </script>
+
 <body>
     <div class="nav center horizontal">
         <div class="nav-container horizontal center">
             <a href="explorar.html" class="nav-item">
-                <div class="center"><img src="img/explorar.png" alt="Explorar"><p>Explorar</p></div>
+                <div class="center">
+                    <img src="img/explorar.png" alt="Explorar">
+                    <p>Explorar</p>
+                </div>
             </a>
             <a href="index.html" class="nav-item home">
-                <div class="center"><img src="img/logo.png" alt="Início"><p>Início</p></div>
+                <div class="center">
+                    <img src="img/logo.png" alt="Início">
+                    <p>Início</p>
+                </div>
             </a>
             <a href="sobre.html" class="nav-item">
-                <div class="center"><img src="img/info.png" alt="Informações"><p>Contato</p></div>
+                <div class="center">
+                    <img src="img/info.png" alt="Informações">
+                    <p>Contato</p>
+                </div>
             </a>
         </div>
     </div>
@@ -69,7 +79,7 @@
             <img src="img/Site Parque.svg" alt="logo" class="logo">
         </div>
     </section>
-    
+
     <div class="container">
         <section class="conteudo center">
             <h1>Trilhas</h1>
@@ -78,13 +88,12 @@
                 <br>
                 Explore caminhos serenos, admire vistas deslumbrantes e encontre a paz na jornada.
             </p>
-            <a href="trilhas-all.html" class="botao">Ver todas as trilhas</a>
 
-            <h1>Em destaque:</h1>
-           
+            <h1>Todas as trilhas:</h1>
+
             <div class="trilhas gap">
                 <div class="cards-horizontal" id="cards-container">
-                    
+                    <!-- Cards das trilhas serão inseridos aqui -->
                 </div>
             </div>
         </section>
@@ -92,7 +101,8 @@
 
     <footer>
         <div class="container center conteudo">
-            <img src="img/caraguatatuba.png" alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
+            <img src="img/caraguatatuba.png"
+                alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
 
             <div class="links horizontal">
                 <a href=""><img src="img/instagram.png" alt="Instagram"></a>
@@ -103,4 +113,5 @@
         </div>
     </footer>
 </body>
+
 </html>
