@@ -39,21 +39,21 @@ app.get('/trilhas/:id', async (req, res) => {
 });
 
 app.post('/trilhas', async (req, res) => {
-    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
+    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque } = req.body;
     const [query] = await connection.execute(
-        'INSERT INTO trilhas (nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem]
+        'INSERT INTO trilhas (nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque]
     );
-    if (query.length === 0) return res.status(400).json({ mensagem: 'Erro na adição da trilha.' });
+    if (query.affectedRows === 0) return res.status(400).json({ mensagem: 'Erro na adição da trilha.' });
     return res.status(200).json({ mensagem: 'Trilha inserida com sucesso.' });
 });
 
 app.put('/trilhas/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem } = req.body;
+    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque } = req.body;
     const [query] = await connection.execute(
-        'UPDATE trilhas SET nome = ?, local = ?, extensao = ?, altitude = ?, duracao = ?, dificuldade = ?, monitoria = ?, caracteristicas = ?, descricao = ?, agendamento = ?, horario = ?, imagem = ? WHERE idTrilhas = ?',
-        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, id]
+        'UPDATE trilhas SET nome = ?, local = ?, extensao = ?, altitude = ?, duracao = ?, dificuldade = ?, monitoria = ?, caracteristicas = ?, descricao = ?, agendamento = ?, horario = ?, imagem = ?, destaque = ? WHERE idTrilhas = ?',
+        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque, id]
     );
     if (query.affectedRows === 0) return res.status(404).json({ mensagem: 'Trilha não encontrada.' });
     return res.status(200).json({ mensagem: 'Trilha alterada com sucesso.' });
