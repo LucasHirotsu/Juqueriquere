@@ -1,6 +1,6 @@
-create database Juqueriquere;
+CREATE DATABASE Juqueriquere;
 
-use Juqueriquere;
+USE Juqueriquere;
 
 CREATE TABLE trilhas (
   idtrilhas INT NOT NULL AUTO_INCREMENT,
@@ -16,5 +16,6 @@ CREATE TABLE trilhas (
   agendamento TINYINT NOT NULL,
   horario LONGTEXT NOT NULL,
   imagem TEXT(255) NULL,
-  PRIMARY KEY (`idtrilhas`))
-ENGINE = InnoDB;
+  destaque TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`idtrilhas`)
+) ENGINE = InnoDB;
