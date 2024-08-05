@@ -18,6 +18,14 @@
     --cinza: #1E1E1E;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+    --bg: #008A66;
+    --cor1: #CBFFF1;
+    --cinza: #1E1E1E;
+    }
+}
+
 body {
     background-color: var(--bg);
     overflow-x: hidden;
