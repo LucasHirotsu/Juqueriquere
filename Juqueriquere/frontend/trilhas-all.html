@@ -8,25 +8,80 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
+<style>
+    /* Estilo para o modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+        
+    }
+    .modal-content {
+        background-color: #CBFFF1;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+        border-radius: 20px;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    #trilhaImagem{
+        width: 100%;
+    }
+    #trilhaModal{
+        border-radius: 20px;
+    }
+    .trilhaTexto{
+        color: #008A66;
+    }
+</style>
+
 <script>
+            // Get the button that opens the modal
+        var btn = document.querySelectorAll("card-container");
+
+        
+
     async function fetchTrilhas() {
         try {
             const response = await fetch('http://localhost:9000/trilhas');
             const trilhas = await response.json();
             const cardsContainer = document.getElementById('cards-container');
+            const modalCon = document.getElementById('container');
 
             // Limpa o container antes de adicionar novos cards
             cardsContainer.innerHTML = '';
 
             trilhas.forEach(trilha => {
+                
                 const card = document.createElement('div');
                 card.className = 'card-trilha';
 
                 const imageUrl = trilha.imagem || 'https://via.placeholder.com/300';
 
                 card.innerHTML = `
+                
                     <img src="${imageUrl}" alt="${trilha.nome}">
-                    <div class="card-container">
+                    <div class="card-container" onclick=carregarDetalhes()>
                         <h4>${trilha.nome}</h4>
                         <p>${trilha.descricao}</p>
                         <br>
@@ -37,20 +92,68 @@
                         </p>
                         <br>
                         <p><span>Acesso:</span> ${trilha.agendamento ? 'Agendamento necessário' : 'Gratuito'}</p>
-                    </div>
+                    
                 `;
-
+                card.addEventListener('click', () => showTrilhaDetails(trilha.idtrilhas));
                 cardsContainer.appendChild(card);
+                
             });
         } catch (error) {
             console.error('Erro ao buscar trilhas:', error);
         }
     }
+    async function showTrilhaDetails(id) {
+            try {
+                console.log(id)
+                const response = await fetch(`http://localhost:9000/trilhas/${id}`);
+                const trilhajson = await response.json();
+                const trilha = trilhajson[0]
+                document.getElementById('trilhaNome').innerText = trilha.nome + "teste";
+                document.getElementById('trilhaImagem').src = trilha.imagem || 'https://via.placeholder.com/300';
+                document.getElementById('trilhaLocal').innerText = trilha.local;
+                document.getElementById('trilhaExtensao').innerText = trilha.extensao;
+                document.getElementById('trilhaAltitude').innerText = trilha.altitude;
+                document.getElementById('trilhaDuracao').innerText = trilha.duracao;
+                document.getElementById('trilhaDificuldade').innerText = trilha.dificuldade;
+                document.getElementById('trilhaMonitoria').innerText = trilha.monitoria;
+                document.getElementById('trilhaCaracteristicas').innerText = trilha.caracteristicas;
+                document.getElementById('trilhaDescricao').innerText = trilha.descricao;
+                document.getElementById('trilhaAgendamento').innerText = trilha.agendamento ? 'Agendamento necessário' : 'Gratuito';
+                document.getElementById('trilhaHorario').innerText = trilha.horario;
+
+                document.getElementById('trilhaModal').style.display = 'block';
+            } catch (error) {
+                console.error('Erro ao buscar detalhes da trilha:', error);
+            }
+        }
+        
+        window.onclick = (event) => {
+            if (event.target === document.getElementById('trilhaModal')) {
+                document.getElementById('trilhaModal').style.display = 'none';
+            }
+        }
 
     document.addEventListener('DOMContentLoaded', fetchTrilhas);
 </script>
 
 <body>
+    <div id="trilhaModal" class="modal">
+        <div class="modal-content">
+            
+            <h2 id="trilhaNome" class="trilhaTexto"></h2>
+            <img id="trilhaImagem" src="" alt="Imagem da Trilha">
+            <p class="trilhaTexto"><strong>Local:</strong> <span id="trilhaLocal"></span></p>
+            <p class="trilhaTexto"><strong>Extensão:</strong> <span id="trilhaExtensao"></span></p>
+            <p class="trilhaTexto"><strong>Altitude:</strong> <span id="trilhaAltitude"></span></p>
+            <p class="trilhaTexto"><strong>Duração:</strong> <span id="trilhaDuracao"></span></p>
+            <p class="trilhaTexto"><strong>Dificuldade:</strong> <span id="trilhaDificuldade"></span></p>
+            <p class="trilhaTexto"><strong>Monitoria:</strong> <span id="trilhaMonitoria"></span></p>
+            <p class="trilhaTexto"><strong>Características:</strong> <span id="trilhaCaracteristicas"></span></p>
+            <p class="trilhaTexto"><strong>Descrição:</strong> <span id="trilhaDescricao"></span></p>
+            <p class="trilhaTexto"><strong>Agendamento:</strong> <span id="trilhaAgendamento"></span></p>
+            <p class="trilhaTexto"><strong>Horário:</strong> <span id="trilhaHorario"></span></p>
+        </div>
+    </div>
     <div class="nav center horizontal">
         <div class="nav-container horizontal center">
             <a href="explorar.html" class="nav-item">
