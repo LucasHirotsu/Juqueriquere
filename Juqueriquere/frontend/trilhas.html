@@ -8,6 +8,10 @@
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
 <style>
+    
+    .card-container{
+        cursor:pointer;
+    }
     /* Estilo para o modal */
     .modal {
         display: none;
@@ -44,7 +48,11 @@
         cursor: pointer;
     }
     #trilhaImagem{
-        width: 100%;
+        width: 58vw;
+        object-fit: cover;
+    }
+    .modalImagem{
+  width:60vw;
     }
     #trilhaModal{
         border-radius: 20px;
@@ -96,9 +104,9 @@
             try {
                 console.log(id)
                 const response = await fetch(`http://localhost:9000/trilhas/${id}`);
-                const trilhajson = await response.json();
+                const trilhajson = await response.json([0]);
                 const trilha = trilhajson[0]
-                document.getElementById('trilhaNome').innerText = trilha.nome + "teste";
+                document.getElementById('trilhaNome').innerText = trilha.nome;
                 document.getElementById('trilhaImagem').src = trilha.imagem || 'https://via.placeholder.com/300';
                 document.getElementById('trilhaLocal').innerText = trilha.local;
                 document.getElementById('trilhaExtensao').innerText = trilha.extensao;
@@ -130,7 +138,9 @@
         <div class="modal-content">
             
             <h2 id="trilhaNome" class="trilhaTexto"></h2>
-            <img id="trilhaImagem" src="" alt="Imagem da Trilha">
+            <div class="modalImagem">
+                <img id="trilhaImagem" src="" alt="Imagem da Trilha">
+            </div>
             <p class="trilhaTexto"><strong>Local:</strong> <span id="trilhaLocal"></span></p>
             <p class="trilhaTexto"><strong>Extensão:</strong> <span id="trilhaExtensao"></span></p>
             <p class="trilhaTexto"><strong>Altitude:</strong> <span id="trilhaAltitude"></span></p>
