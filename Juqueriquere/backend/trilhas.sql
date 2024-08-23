@@ -19,3 +19,12 @@ CREATE TABLE trilhas (
   destaque TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`idtrilhas`)
 ) ENGINE = InnoDB;
+
+
+CREATE TABLE passaros (
+  id INT NOT NULL AUTO_INCREMENT,
+  nome TEXT(150) NOT NULL,
+  descricao TEXT(255) NOT NULL,
+  imagem TEXT(255) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
