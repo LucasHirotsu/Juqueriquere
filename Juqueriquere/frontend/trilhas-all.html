@@ -9,6 +9,10 @@
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 </head>
 <style>
+    
+    .card-container{
+        cursor:pointer;
+    }
     /* Estilo para o modal */
     .modal {
         display: none;
@@ -46,6 +50,7 @@
     }
     #trilhaImagem{
         width: 100%;
+        object-fit: cover;
     }
     #trilhaModal{
         border-radius: 20px;
@@ -108,7 +113,7 @@
                 const response = await fetch(`http://localhost:9000/trilhas/${id}`);
                 const trilhajson = await response.json();
                 const trilha = trilhajson[0]
-                document.getElementById('trilhaNome').innerText = trilha.nome + "teste";
+                document.getElementById('trilhaNome').innerText = trilha.nome;
                 document.getElementById('trilhaImagem').src = trilha.imagem || 'https://via.placeholder.com/300';
                 document.getElementById('trilhaLocal').innerText = trilha.local;
                 document.getElementById('trilhaExtensao').innerText = trilha.extensao;
