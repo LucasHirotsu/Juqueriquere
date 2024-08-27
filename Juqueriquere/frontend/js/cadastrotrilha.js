@@ -1,6 +1,11 @@
 function cancel(){
     document.getElementById('trilhaModal').style.display = 'none';
   };
+
+
+
+
+  
 async function deletarTrilhaConfirm(id) {
     
     try {
@@ -24,6 +29,7 @@ async function deletarTrilha(id) {
           const result = await response.json();
         if (response.ok) {
           alert(result.mensagem);
+          location.reload();
         } else {
           alert(result.mensagem || 'Erro ao deletar trilha');
         }
@@ -39,8 +45,36 @@ async function fetchTrilhas() {
         const trilhas = await response.json();
         const cardsContainer = document.getElementById('cards-container');
         const modalCon = document.getElementById('container');
+        document.getElementById('cards-container').style.display = "block";
+        document.getElementById('trilhasGap').style.cssText = `
+        display : block;
+        flexDirection : initial;
+        `;
         // Limpa o container antes de adicionar novos cards
         cardsContainer.innerHTML = '';
+
+        if (trilhas.length == 0){
+            const noTrilha = document.createElement('div');
+            noTrilha.className = 'card-semtrilha';
+
+            
+            noTrilha.innerHTML = `
+            
+              
+                <div class="semTrilha blinking">
+                <div>
+                  <h1 class="item1">Vazio <br> não há trilhas cadastradas ainda!</h1>
+                </div>
+                <div>
+                  <span class="material-symbols-outlined item2">
+                  hiking
+                  </span>
+                </div>
+                    
+                
+            `;
+            cardsContainer.appendChild(noTrilha);
+        }
 
         trilhas.forEach(trilha => {
             
@@ -65,9 +99,9 @@ async function fetchTrilhas() {
                     
                     <br>
                     <p><span>Acesso:</span> ${trilha.agendamento ? 'Agendamento necessário' : 'Gratuito'}</p>
-                    <div class"card-buttons">
-                      <button><span class="material-symbols-outlined delete" onclick="deletarTrilhaConfirm(${trilha.idtrilhas})">delete</span></button>
-                      <button><span class="material-symbols-outlined edit">edit</span></button>
+                    <div class="card-buttons">
+                      <button class="delete"><span class="material-symbols-outlined " onclick="deletarTrilhaConfirm(${trilha.idtrilhas})">delete</span></button>
+                      <button class="edit"><span class="material-symbols-outlined ">edit</span></button>
                     </div>
                     
                 
