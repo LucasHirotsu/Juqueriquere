@@ -45,15 +45,16 @@ async function fetchTrilhas() {
         const trilhas = await response.json();
         const cardsContainer = document.getElementById('cards-container');
         const modalCon = document.getElementById('container');
-        document.getElementById('cards-container').style.display = "block";
-        document.getElementById('trilhasGap').style.cssText = `
-        display : block;
-        flexDirection : initial;
-        `;
+        
         // Limpa o container antes de adicionar novos cards
         cardsContainer.innerHTML = '';
 
         if (trilhas.length == 0){
+          document.getElementById('cards-container').style.display = "block";
+          document.getElementById('trilhasGap').style.cssText = `
+          display : block;
+          flexDirection : initial;
+          `;
             const noTrilha = document.createElement('div');
             noTrilha.className = 'card-semtrilha';
 
