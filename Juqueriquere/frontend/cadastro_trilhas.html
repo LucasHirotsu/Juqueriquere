@@ -8,8 +8,27 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-
+        .blinking{
+	        animation:blinkingElement 1.0s infinite;
+        }
+        .empty-box{
+            width:250px;
+            height:50px;
+            background-color:black;
+            color:white;
+            text-align:center;
+            vertical-align:middle;
+            line-height:50px;
+            margin:16px;
+        }
+        @keyframes blinkingElement{
+            0% {opacity:0.5;}
+            49% {opacity:1;}
+            50% {opacity:0.5;}
+            100% {opacity:0.2;}
+        }
         .modal {
             display: none;
             position: fixed;
@@ -67,30 +86,64 @@
             width: 100%;
         }
         .material-symbols-outlined {
-            display: none; /* Hide button */
-            box-sizing: border-box;
+            color: white;
+            opacity: 80%;
+        }
+
+        .delete{
+            display: none;
+            opacity: 100%;
+            height: 70px;
             width: 100%;
-            height: 50px;
-            padding: 10px;
+            grid-column: 1;
+            align-items: center;
+            align-items: center;
+            line-height: 70px;
             background-color: var(--cor1);
-            border: 2px solid var(--bg);
-            border-radius: 5px;
-            
+            border-color: var(--bg);
+            border-radius: 10px;
+        }
+
+        
+        .edit{
+            display: none;
+            opacity: 100%;
+            height: 70px;
+            width: 100%;
+            grid-column: 2;
+            align-items: center;
+            line-height: 70px;
+            background-color: var(--cor1);
+            border-color: var(--bg);
+            border-radius: 10px;
         }
         .delete:hover{
             background-color: rgba(255, 0, 0, 0.411);
+            
         }
         .edit:hover{
             background-color: rgba(255, 217, 0, 0.5);
+            
         }
         .card-buttons{
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 20px;
-            justify-content: space-between;
+            grid-template-columns: auto auto;
+            gap: 5px;
         }
-        .card-trilha:hover .material-symbols-outlined {
+        .card-trilha:hover .delete {
             display: block; /* On :hover of div show button */
+        }
+        .card-trilha:hover .edit {
+            display: block; /* On :hover of div show button */
+        }
+        .semTrilha{
+            display: grid;
+            opacity: 100%;
+            gap: 10px;
+            align-items: center;
+            justify-items: center;
+            align-content: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -138,7 +191,7 @@
     </section>
     <section class="container conteudo center">
         <h1>Trilhas Cadastradas:</h1>
-        <div class="trilhas gap">
+        <div class="trilhas gap" id="trilhasGap">
             <div class="cards-horizontal" id="cards-container">
                 <!-- Cards das trilhas serão inseridos aqui -->
             </div>
