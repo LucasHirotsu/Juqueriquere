@@ -40,41 +40,38 @@ async function deletarTrilha(id) {
         }
 };
 
-async function editarTrilha(id){
-  try{
+async function editarTrilha(id) {
+  try {
+    // Requisição para obter dados da trilha
     const response = await fetch(`http://localhost:9000/trilhas/${id}`);
     const trilhajson = await response.json();
-    const trilha = trilhajson[0]
-    var items = ['nome', 'local', 'extensao', 'altitude', 'duracao', 'dificuldade', 'monitoria', 'agendamento', 'caracteristicas', 'descricao', 'horario', 'imagem', 'destaque'];
-    items.forEach(item => {
-      console.log(item)
-      entries = Object.entries(trilha)
-      entries.map( ([key, val] = entry) => {
-        if (item == key){
-          return document.getElementById(item).placeholder = val, document.getElementById(item).checked = val;
-        }
-      });
-      
+    const trilha = trilhajson[0];
+    updateFormFields(trilha);
 
-
-    });
-
-    
-    document.getElementById('buttonEdit').addEventListener('click', () => editarTrilhaConfirm(id));
     document.getElementById('trilhaModalEdit').style.display = 'block';
-  }catch(error){
-    console.error('Erro: ', error);
-    alert('Erro ao carregar detalhes da trilha')
+    document.getElementById('buttonEdit').addEventListener('click', () => editarTrilhaConfirm(id));
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao carregar detalhes da trilha');
   }
+}
 
+function updateFormFields(trilha) {
+  const items = ['nome', 'local', 'extensao', 'altitude', 'duracao', 'dificuldade', 'monitoria', 'agendamento', 'caracteristicas', 'descricao', 'horario', 'imagem', 'destaque'];
 
-  
-  
+  items.forEach(item => {
+    const element = document.getElementById(item);
+    if (element) {
+      if (element.type === 'checkbox') {
+        element.checked = trilha[item] === 1;
+      } else {
+        element.value = trilha[item] || '';
+      }
+    }
+  });
+}
 
-  
-};
-
-async function editarTrilhaConfirm(id){
+async function editarTrilhaConfirm(id) {
   const trilha = {
     nome: document.getElementById('nome').value,
     local: document.getElementById('local').value,
@@ -88,29 +85,37 @@ async function editarTrilhaConfirm(id){
     descricao: document.getElementById('descricao').value,
     horario: document.getElementById('horario').value,
     imagem: document.getElementById('imagem').value,
-    destaque: document.getElementById('destaque').checked ? 1 : 0 
-};
+    destaque: document.getElementById('destaque').checked ? 1 : 0
+  };
+
   try {
-      const response = await fetch('http://localhost:9000/trilhas/' + id, {
-        method: 'PUT',
-        headers:{
-          'Content-Type': 'application/json'
-        },body: JSON.stringify(trilha)
-      });
-      
-      const result = await response.json();
-    if (response.ok) {
-      alert(result.mensagem);
-      location.reload();
-    } else {
-      alert(result.mensagem || 'Trilha editada com sucesso!');
+    const response = await fetch(`http://localhost:9000/trilhas/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(trilha)
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const result = await response.json();
+    alert(result.mensagem || 'Trilha editada com sucesso!');
+    location.reload();
   } catch (error) {
-    console.error('Erro:', error);
-    alert('Erro ao editar trilha?');
+    if (error.name === 'SyntaxError') {
+      console.error('Erro de JSON:', error);
+      alert('Erro ao processar resposta do servidor.');
+    } else if (error.message.startsWith('HTTP error')) {
+      console.error('Erro de rede:', error);
+      alert('Erro ao editar trilha. Verifique sua conexão ou tente novamente mais tarde.');
+    } else {
+      console.error('Erro desconhecido:', error);
+      // alert('Erro ao editar trilha.'); 
+      // por algum motivo dá um erro desconhecido de vez em quando mesmo o UPDATE sendo bem sucedido (?)
+    }
   }
 };
-  
 
 async function fetchTrilhas() {
     try {
