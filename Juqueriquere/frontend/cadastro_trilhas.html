@@ -66,7 +66,9 @@
         #trilhaForm .horizontal {
             align-items: center;
         }
-
+        .trilhaTexto{
+            color: var(--bg);
+        }
         input[type="checkbox"] {
             width: 20px;
             cursor: pointer;
@@ -156,12 +158,93 @@
 </script>
 
 <body>
-    <div id="trilhaModal" class="modal">
+    <div id="trilhaModalDelete" class="modal">
         <div class="modal-content">
             
             <h2 class="trilhaTexto">Deseja mesmo excluir a Trilha <span id="trilhaNome" class="trilhaTexto"></span></h2>
             <button id="buttonExcluir">Excluir</button>
             <button onclick="cancel()">Cancelar</button>
+        </div>
+    </div>
+    <div id="trilhaModalEdit" class="modal">
+        <div class="modal-content">
+
+            
+            
+            <h2 class="trilhaTexto">Editar Trilha <span id="trilhaNome" class="trilhaTexto"></span></h2>
+            <form id="trilhaEditForm">
+                <div>
+                    <label for="nome">Nome da Trilha:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome da trilha" required>
+                </div>
+            
+                <div>
+                    <label for="local">Localização:</label>
+                    <input type="text" id="local" name="local" placeholder="Digite a localização" required>
+                </div>
+            
+                <div>
+                    <label for="extensao">Extensão (em km):</label>
+                    <input type="number" id="extensao" name="extensao" placeholder="Digite a extensão em km" step="0.01" required>
+                </div>
+            
+                <div>
+                    <label for="altitude">Altitude (em metros):</label>
+                    <input type="number" id="altitude" name="altitude" placeholder="Digite a altitude em metros" step="0.01">
+                </div>
+            
+                <div>
+                    <label for="duracao">Duração (em minutos):</label>
+                    <input type="number" id="duracao" name="duracao" placeholder="Digite a duração em minutos" required>
+                </div>
+            
+                <div class="slider-container horizontal">
+                    <label for="dificuldade">Nível de Dificuldade:</label>
+                    <span id="dificuldade-value">3</span>
+                    <input type="range" id="dificuldade" name="dificuldade" min="1" max="5" required>
+                </div>
+            
+                <div class="horizontal">
+                    <div class="horizontal w50">
+                        <label for="agendamento">Requer Agendamento:</label>
+                        <input type="checkbox" id="agendamento" name="agendamento" value="1">
+                    </div>
+                    <div class="horizontal w50">
+                        <label for="monitoria">Monitoria Disponível:</label>
+                        <input type="checkbox" id="monitoria" name="monitoria" value="1">
+                    </div>
+                </div>
+            
+                <div>
+                    <label for="caracteristicas">Características:</label>
+                    <input type="text" id="caracteristicas" name="caracteristicas" placeholder="Digite as características" required>
+                </div>
+            
+                <div>
+                    <label for="descricao">Descrição da Trilha:</label>
+                    <input type="text" id="descricao" name="descricao" placeholder="Digite a descrição da trilha" required>
+                </div>
+            
+                <div>
+                    <label for="horario">Horário de Funcionamento:</label>
+                    <input type="text" id="horario" name="horario" placeholder="Digite o horário de funcionamento" required>
+                </div>
+            
+                <div>
+                    <label for="imagem">URL da Imagem:</label>
+                    <input type="text" id="imagem" name="imagem" placeholder="Digite a URL da imagem">
+                </div>
+            
+                <div>
+                    <label for="destaque">Destaque:</label>
+                    <input type="checkbox" id="destaque" name="destaque" value="1">
+                    <span>Marque se a trilha deve estar em destaque.</span>
+                </div>
+            
+                <button id="buttonEdit" type="submit">Salvar alterações</button>
+                <button onclick="cancel()">Cancelar</button>
+            </form>
+            
         </div>
     </div>
     <div class="nav center horizontal">
