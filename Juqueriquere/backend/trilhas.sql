@@ -26,5 +26,7 @@ CREATE TABLE passaros (
   nome TEXT(150) NOT NULL,
   descricao TEXT(255) NOT NULL,
   imagem TEXT(255) NULL,
+  idAutor INT NOT NULL,
+  CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
