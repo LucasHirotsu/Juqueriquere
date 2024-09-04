@@ -4,120 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avistamento de pássaros | Parque Natural Municipal do Juqueriquerê</title>
+    <title>Avistamento de Pássaros | Parque Natural Municipal do Juqueriquerê</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <style>
+        /* Estilo para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #CBFFF1;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            border-radius: 20px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<style>
-    /* Estilo para o modal */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.4);
-        padding-top: 60px;
-        
-    }
-    .modal-content {
-        background-color: #CBFFF1;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 60%;
-        border-radius: 20px;
-    }
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
-<script>
-            // Get the button that opens the modal
-        var btn = document.querySelectorAll("card-container");
-
-        
-
-    async function carregarPassaros() {
-        try {
-            const response = await fetch('http://localhost:9000/passaros');
-            const passaros = await response.json();
-            const cardsContainer = document.getElementById('cards-container');
-            const modalCon = document.getElementById('container');
-
-            // Limpa o container antes de adicionar novos cards
-            cardsContainer.innerHTML = '';
-
-            passaros.forEach(passaro => {
-                
-                const card = document.createElement('div');
-                card.className = 'card-passaro';
-
-                const imageUrl = passaro.imagem || 'https://via.placeholder.com/300';
-
-                card.innerHTML = `
-                
-                    <img src="${imageUrl}" alt="${passaro.nome}">
-                    <div class="card-container">
-                        <h4>${passaro.nome}</h4>
-                        <p>${passaro.fotografo}</p>
-                        <br>
-                    
-                `;
-                card.addEventListener('click', () => mostrarPassaroDetalhes(passaro.id));
-                cardsContainer.appendChild(card);
-                
-            });
-        } catch (error) {
-            console.error('Erro ao buscar pássaros:', error);
-        }
-    }
-    async function mostrarPassaroDetalhes(id) {
-            try {
-                console.log(id)
-                const response = await fetch(`http://localhost:9000/passaros/${id}`);
-                const passarojson = await response.json();
-                const passaro = passarojson[0]
-                document.getElementById('passaroaNome').innerText = passaro.nome;
-                document.getElementById('passaroImagem').src = passaro.imagem || 'https://via.placeholder.com/300';
-
-                document.getElementById('passaroModal').style.display = 'block';
-            } catch (error) {
-                console.error('Erro ao buscar detalhes do passáro:', error);
-            }
-        }
-        
-        window.onclick = (event) => {
-            if (event.target === document.getElementById('passaroModal')) {
-                document.getElementById('passaroModal').style.display = 'none';
-            }
-        }
-
-    document.addEventListener('DOMContentLoaded', carregarPassaros);
-</script>
 
 <body>
+    <div id="modalPost" class="modal">
+        <div class="modal-content">
+
+                
+                
+            <h2 class="trilhaTexto">Postar Pássaro <span id="trilhaNome" class="trilhaTexto"></span></h2>
+            <form id="passaroForm">
+                <div>
+                    <label for="nome">Nome do Pássaro:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome do pássaro" required>
+                </div>
+                
+                <div>
+                    <label for="imagem">URL da Imagem:</label>
+                    <input type="text" id="imagem" name="imagem" placeholder="Digite a URL da imagem" required>
+                </div>
+
+                <div>
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição" required>
+                </div>
+
+                <button type="submit">Cadastrar Pássaro</button>
+            </form>
+                <button onclick="cancel()">Cancelar</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
     <div id="passaroModal" class="modal">
         <div class="modal-content">
-            
+            <span class="close" id="closeModal">&times;</span>
             <h2 id="passaroNome" class="passaroTexto"></h2>
             <img id="passaroImagem" src="" alt="Imagem do passáro">
         </div>
     </div>
+
     <div class="nav center horizontal">
         <div class="nav-container horizontal center">
             <a href="explorar.html" class="nav-item">
@@ -149,20 +114,24 @@
 
     <div class="container">
         <section class="conteudo center">
-            <h1>Avistamento de pássaros</h1>
+            <h1>Avistamento de Pássaros</h1>
             <p>
-                Veja os pássaros mais botinos de nosso parque!<br>
+                Veja os pássaros mais bonitos de nosso parque!<br>
                 <br>
                 Tire fotos e aprecie todos os tipos de pássaros aqui encontrados.
             </p>
 
-            <h1>pássaros:</h1>
+            <button id="postar" onclick="postarPassaro()">Postar pássaro visto</button>
+            
 
-            <div class="passaros gap">
-                <div class="cards-horizontal" id="cards-container">
-                    <!-- Cards dos pássaros serão inseridos aqui -->
+            <h1>Pássaros:</h1>
+            <section class="container conteudo center">
+                <div class="passaros gap">
+                    <div class="cards-horizontal" id="cards-container">
+                        <!-- Cards dos pássaros serão inseridos aqui -->
+                    </div>
                 </div>
-            </div>
+            </section>
         </section>
     </div>
 
@@ -170,7 +139,6 @@
         <div class="container center conteudo">
             <img src="img/caraguatatuba.png"
                 alt="Prefeitura Municipal de Caraguatatuba - Secretaria Municipal de Meio Ambiente" id="caraguatatuba">
-
             <div class="links horizontal">
                 <a href=""><img src="img/instagram.png" alt="Instagram"></a>
                 <a href=""><img src="img/facebook.png" alt="Facebook"></a>
@@ -179,6 +147,109 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Envio de formulário para adicionar um pássaro
+        document.getElementById('passaroForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const passaro = {
+                nome: document.getElementById('nome').value,
+                imagem: document.getElementById('imagem').value,
+                descricao: document.getElementById('descricao').value,
+                idAutor: 1
+            };
+
+            try {
+                const response = await fetch('http://localhost:9000/passaros', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(passaro)
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.mensagem);
+                    carregarPassaros(); // Atualiza a lista de pássaros
+                } else {
+                    alert(result.mensagem || 'Erro ao cadastrar pássaro');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao fazer a postagem');
+            }
+        });
+
+        function postarPassaro(){
+            document.getElementById('modalPost').style.display = 'block';
+        };
+        function cancel(){
+            document.getElementById('modalPost').style.display = 'none';
+        };
+        // Carregar pássaros e exibir os cards
+        
+        async function carregarPassaros() {
+            try {
+                const response = await fetch('http://localhost:9000/passaros');
+                const passaros = await response.json();
+                const cardsContainer = document.getElementById('cards-container');
+
+                // Limpa o container antes de adicionar novos cards
+                cardsContainer.innerHTML = '';
+
+                passaros.forEach(passaro => {
+                    const card = document.createElement('div');
+                    card.className = 'card-passaro';
+
+                    const imageUrl = passaro.imagem || 'https://via.placeholder.com/300';
+
+                    card.innerHTML = `
+                        <img src="${imageUrl}" alt="${passaro.nome}">
+                        <div class="card-container">
+                            <h4>${passaro.nome}</h4>
+                            <p>${passaro.descricao}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => mostrarPassaroDetalhes(passaro.id));
+                    cardsContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar pássaros:', error);
+            }
+        }
+
+        // Mostrar detalhes do pássaro no modal
+        async function mostrarPassaroDetalhes(id) {
+            try {
+                const response = await fetch(`http://localhost:9000/passaros/${id}`);
+                const passaro = await response.json();
+
+                document.getElementById('passaroNome').innerText = passaro.nome;
+                document.getElementById('passaroImagem').src = passaro.imagem || 'https://via.placeholder.com/300';
+
+                document.getElementById('passaroModal').style.display = 'block';
+            } catch (error) {
+                console.error('Erro ao buscar detalhes do pássaro:', error);
+            }
+        }
+
+        // Fechar o modal ao clicar fora dele
+        window.onclick = (event) => {
+            if (event.target === document.getElementById('passaroModal')) {
+                document.getElementById('passaroModal').style.display = 'none';
+            }
+        }
+
+        // Fechar o modal ao clicar no botão de fechar
+        document.getElementById('closeModal').onclick = () => {
+            document.getElementById('passaroModal').style.display = 'none';
+        }
+
+        // Carregar pássaros ao carregar a página
+        document.addEventListener('DOMContentLoaded', carregarPassaros);
+    </script>
 </body>
 
 </html>
