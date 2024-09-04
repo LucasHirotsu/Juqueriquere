@@ -17,7 +17,7 @@ const connection = mysql.createPool({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'root',
+    password: 'aluno',
     database: 'Juqueriquere'
 });
 
@@ -78,16 +78,16 @@ app.get('/passaros', async (req, res) => {
 
 app.get('/passaros/:id', async (req, res) => {
     const { id } = req.params;
-    const [query] = await connection.execute('SELECT * FROM trilhas WHERE idTrilhas = ?', [id]);
+    const [query] = await connection.execute('SELECT * FROM passaros WHERE id = ?', [id]);
     if (query.length === 0) return res.status(400).json({ mensagem: 'Pássaro não encontrado.' });
     return res.status(200).json(query);
 });
 
 app.post('/passaros', async (req, res) => {
-    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque } = req.body;
+    const { nome, descricao, imagem, idAutor} = req.body;
     const [query] = await connection.execute(
-        'INSERT INTO passaros (nome, descricao, imagem) VALUES (?, ?, ?)',
-        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque]
+        'INSERT INTO passaros (nome, descricao, imagem, idAutor) VALUES (?, ?, ?, ?)',
+        [nome, descricao, imagem, idAutor]
     );
     if (query.affectedRows === 0) return res.status(400).json({ mensagem: 'Erro ao postar o pássaro.' });
     return res.status(200).json({ mensagem: 'postagem feita!' });
@@ -95,10 +95,10 @@ app.post('/passaros', async (req, res) => {
 
 app.put('/passaros/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque } = req.body;
+    const { nome, descricao, imagem, idAutor } = req.body;
     const [query] = await connection.execute(
         'UPDATE passaros SET nome = ?, descricao = ?, imagem = ?',
-        [nome, local, extensao, altitude, duracao, dificuldade, monitoria, caracteristicas, descricao, agendamento, horario, imagem, destaque, id]
+        [nome, descricao, imagem, idAutor, id]
     );
     if (query.affectedRows === 0) return res.status(404).json({ mensagem: 'Pássaro não encontrado.' });
     return res.status(200).json({ mensagem: 'Pássaro alterado com sucesso.' });
