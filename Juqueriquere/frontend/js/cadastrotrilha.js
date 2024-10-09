@@ -40,6 +40,8 @@ async function deletarTrilha(id) {
         }
 };
 
+
+
 async function editarTrilha(id) {
   try {
     // Requisição para obter dados da trilha
@@ -64,12 +66,16 @@ function updateFormFields(trilha) {
     if (element) {
       if (element.type === 'checkbox') {
         element.checked = trilha[item] === 1;
-      } else {
+      } 
+      if (element != 'localização' && element == ''){
+        return alert("preencha todos os campos");
+      }else {
         element.value = trilha[item] || '';
       }
     }
   });
 }
+
 
 async function editarTrilhaConfirm(id) {
   const trilha = {
@@ -87,34 +93,39 @@ async function editarTrilhaConfirm(id) {
     imagem: document.getElementById('imagem').value,
     destaque: document.getElementById('destaque').checked ? 1 : 0
   };
-
-  try {
-    const response = await fetch(`http://localhost:9000/trilhas/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(trilha)
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+  console.log(trilha.extensao)
+  if (trilha.nome != 0 && trilha.extensao != 0 && trilha.duracao != 0 && trilha.dificuldade != 0 && trilha.caracteristicas != 0 && trilha.descricao != 0 && trilha.horario != 0){
+    
+    try {
+      const response = await fetch(`http://localhost:9000/trilhas/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(trilha)
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      alert(result.mensagem || 'Trilha editada com sucesso!');
+      location.reload();
+    } catch (error) {
+      if (error.name === 'SyntaxError') {
+        console.error('Erro de JSON:', error);
+        alert('Erro ao processar resposta do servidor.');
+      } else if (error.message.startsWith('HTTP error')) {
+          console.error('Erro de rede:', error);
+          alert('Erro ao editar trilha. Verifique sua conexão ou tente novamente mais tarde.');
+      } else {
+          console.error('Erro desconhecido:', error);
+          // alert('Erro ao editar trilha.'); 
+          // por algum motivo dá um erro desconhecido de vez em quando mesmo o UPDATE sendo bem sucedido (?)
+        }
+      }
+  }else{
+    console.log('preencha os campos obrigatórios')
     }
-    const result = await response.json();
-    alert(result.mensagem || 'Trilha editada com sucesso!');
-    location.reload();
-  } catch (error) {
-    if (error.name === 'SyntaxError') {
-      console.error('Erro de JSON:', error);
-      alert('Erro ao processar resposta do servidor.');
-    } else if (error.message.startsWith('HTTP error')) {
-      console.error('Erro de rede:', error);
-      alert('Erro ao editar trilha. Verifique sua conexão ou tente novamente mais tarde.');
-    } else {
-      console.error('Erro desconhecido:', error);
-      // alert('Erro ao editar trilha.'); 
-      // por algum motivo dá um erro desconhecido de vez em quando mesmo o UPDATE sendo bem sucedido (?)
-    }
-  }
 };
 
 async function fetchTrilhas() {
