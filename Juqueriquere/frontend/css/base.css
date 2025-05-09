@@ -20,9 +20,9 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-    --bg: #008A66;
-    --cor1: #CBFFF1;
-    --cinza: #1E1E1E;
+    --bg: #0A1F1A;
+    --cor1: #A0D6C4;
+    --cinza: #E0E0E0;
     }
 }
 
